@@ -1,0 +1,10 @@
+Package: geneorama
+Type: Package
+Title: Gene's collection of miscellaneous functions
+Version: 0.5
+Date: 2012-01-30
+Author: Gene Leynes
+Maintainer: Gene Leynes <rpackage@geneorama.com>
+Description: This is an assortment of utilities that I personally use on a regular basis.
+License: LGPL (>= 2.0, < 3) | Mozilla Public License
+LazyLoad: yes
