@@ -27,8 +27,6 @@ function(mu=0.05, sigma=0.20, dt=1, T=10, sims=1e4){
 	## Syntax example:
 	##-----------------------------------------------------------------------------
 	if(FALSE){
-		setwd('J:/frm_group/MStarFundResearch/R_Milliman')
-		source('Functions/Function_makebm.R')
 		makebm(mu=0.05, sigma=0.20, dt=1, T=10, sims=15)
 		makebm(mu=0.05, sigma=0.002, dt=1, T=100, sims=15)
 
