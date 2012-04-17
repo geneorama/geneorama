@@ -1,3 +1,5 @@
+## This is an old function, and should be deleted
+
 subzoo <-
 function(zooobj,start,end){
 	t1=which(index(zooobj)==as.Date(start))
