@@ -30,8 +30,6 @@ function(mu=0.05, sigma=0.20, dt=1, T=10, sims=1e4){
 	## Syntax example:
 	##-----------------------------------------------------------------------------
 	if(FALSE){
-		setwd('J:/frm_group/MStarFundResearch/R_Milliman')
-		source('Functions/Function_makegm.R')
 		## Replicating a European option
 		x=makegm(mu=0.05, sigma=0.2, dt=1, T=10, sims = 1e6)
 		mean(pmax(1.1 - x[,10], 0))*exp(-10*.05)# Put worth .0794
