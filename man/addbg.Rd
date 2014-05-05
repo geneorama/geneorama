@@ -5,28 +5,31 @@
 addbg
 }
 \description{
-%%  ~~ A concise (1-5 lines) description of what the function does. ~~
+For default plots this function adds a basic background by adding a transparent rectangle over the plot region.
 }
 \usage{
-addbg(color = heat.colors(40, alpha = 0.15)[30], linecolor = "grey75", addgridlines = TRUE, debug = FALSE)
+addbg(color = heat.colors(40, alpha = 0.15)[30], 
+      linecolor = "grey75", 
+      addgridlines = TRUE)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{color}{
 %%     ~~Describe \code{color} here~~
+Background color, default is a yellow from heat.colors which happens to look reasonable when alpha is applied.
 }
   \item{linecolor}{
 %%     ~~Describe \code{linecolor} here~~
+The linecolor for the (optional) grid lines, the default is grey75
 }
   \item{addgridlines}{
 %%     ~~Describe \code{addgridlines} here~~
-}
-  \item{debug}{
-%%     ~~Describe \code{debug} here~~
+Add gridlines by default
 }
 }
 \details{
 %%  ~~ If necessary, more details than the description above ~~
+This adds a box over the plot area to create the illusion of a background. To truly add a background see addbg().
 }
 \value{
 %%  ~Describe the value returned
@@ -40,6 +43,7 @@ addbg(color = heat.colors(40, alpha = 0.15)[30], linecolor = "grey75", addgridli
 }
 \author{
 %%  ~~who you are~~
+Gene Leynes
 }
 \note{
 %%  ~~further notes~~
@@ -51,24 +55,11 @@ addbg(color = heat.colors(40, alpha = 0.15)[30], linecolor = "grey75", addgridli
 %% ~~objects to See Also as \code{\link{help}}, ~~~
 }
 \examples{
-##---- Should be DIRECTLY executable !! ----
-##-- ==>  Define data, use random,
-##--	or do  help(data=index)  for the standard data sets.
 
-## The function is currently defined as
-function (color = heat.colors(40, alpha = 0.15)[30], linecolor = "grey75", 
-    addgridlines = TRUE, debug = FALSE) 
-{
-    if (debug) 
-        browser()
-    tmp = par("usr")
-    rect(tmp[1], tmp[3], tmp[2], tmp[4], col = color)
-    if (addgridlines) {
-        ylimits = par()$usr[c(3, 4)]
-        abline(h = pretty(ylimits, 10), lty = 2, col = linecolor)
-    }
-  }
-}
+require(geneorama)
+plot(1:10)
+addbg()
+
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
 \keyword{ ~kwd1 }
