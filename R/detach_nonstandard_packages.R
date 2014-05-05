@@ -1,5 +1,5 @@
 ##
-## Detach any non-standard packages from memory
+## Detach any non-standard packages from the search path
 ##
 ## 2014-03-31   SJR   Extracted this function from 00_Initialize.R
 ## 2014-05-05   GWL   Adding function to geneorama package
