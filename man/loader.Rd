@@ -1,76 +1,66 @@
 \name{loader}
 \alias{loader}
-%- Also NEED an '\alias' for EACH other topic documented here.
+\alias{saver}
+
 \title{
-loader
+Functions to load and save single R objects (DEPRICATED)
 }
 \description{
-%%  ~~ A concise (1-5 lines) description of what the function does. ~~
+Depricated - Use readRDS
 }
+
 \usage{
 loader(x, xPath = ".")
-}
-%- maybe also 'usage' for other objects documented here.
-\arguments{
-  \item{x}{
-%%     ~~Describe \code{x} here~~
-}
-  \item{xPath}{
-%%     ~~Describe \code{xPath} here~~
-}
-}
-\details{
-%%  ~~ If necessary, more details than the description above ~~
-}
-\value{
-%%  ~Describe the value returned
-%%  If it is a LIST, use
-%%  \item{comp1 }{Description of 'comp1'}
-%%  \item{comp2 }{Description of 'comp2'}
-%% ...
-}
-\references{
-%% ~put references to the literature/web site here ~
-}
-\author{
-%%  ~~who you are~~
-}
-\note{
-%%  ~~further notes~~
+saver(x, override = FALSE) 
 }
 
-%% ~Make other sections like Warning with \section{Warning }{....} ~
+\arguments{
+  \item{x}{name (or intended name) of object to be saved or loaded}
+  \item{xPath}{location of file (was "Outputs/" in original version)}
+  \item{override}{save over file if it already exists}
+}
+
+\details{
+Loads using load, but reads in only the first object in the environment.
+
+These basically assume that you're saving only a single object in an Rdata file,
+but can be more effectively accomplished with calls to saveRDS and loadRDS.
+}
+
+\value{
+Any R object
+}
+
+\author{Gene Leynes}
+
+\note{DEPRICATED}
 
 \seealso{
-%% ~~objects to See Also as \code{\link{help}}, ~~~
+\code{\link{readRDS}}
 }
-\examples{
-##---- Should be DIRECTLY executable !! ----
-##-- ==>  Define data, use random,
-##--	or do  help(data=index)  for the standard data sets.
 
-## The function is currently defined as
-function (x, xPath = ".") 
-{
-    if (length(grep("\\.[Rr][Dd]ata$", x)) == 0) {
-        x = paste(x, ".RData", sep = "")
-    }
-    xWithPath = file.path(xPath, x)
-    rm(xPath)
-    if (as.name(x) == "x") {
-        load(xWithPath)
-        rm(xWithPath)
-        return(x)
-    }
-    else {
-        load(xWithPath)
-        rm(x, xWithPath)
-        NewVar = ls()[1]
-        return(eval(substitute(variable, list(variable = as.name(NewVar)))))
-    }
-  }
+\examples{
+# set.seed(10)
+# df <- data.frame(col1 = sample(c(rep(NA, 5), rpois(25, 7))),
+#                  col2 = sample(letters[1:5], replace=TRUE),
+#                  col3 = sample(letters[1:5], replace=TRUE))
+
+## This will create a folder called "Outputs" if you don't already have one
+## and attempt to save df to "Outputs", if df doesn't already exist
+# dir.create("Output")
+# saver("df")
+# saver("df")
+
+## Remove df, then reload it
+# rm(df)
+# df <- loader("df.RData", "Outputs")
+
+## Remove folder "Output"
+# unlink("Output")
+
+## Better: 
+# saveRDS(df, "df.Rds")
+# anything_you_want <- readRDS("df.Rds")
+
+
 }
-% Add one or more standard keywords, see file 'KEYWORDS' in the
-% R documentation directory.
-\keyword{ ~kwd1 }
-\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line

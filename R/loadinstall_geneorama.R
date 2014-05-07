@@ -23,7 +23,7 @@ loadinstall_geneorama <- function(){
         
         if(!'geneorama' %in% installed_pacakges){
             ## Get webfile and unzip to a temp directory
-            webfile = 'http://geneorama.com/code/geneorama_1.1.tar.gz'
+            webfile = 'http://geneorama.com/code/geneorama_1.2.tar.gz'
             tmp = tempdir()
             tmpfile = file.path(tmp, basename(webfile))
             download.file(webfile, tmpfile)

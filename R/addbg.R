@@ -1,7 +1,6 @@
 addbg <- function(color = heat.colors(40, alpha=.15)[30], 
                   linecolor = 'grey75', 
-                  addgridlines = TRUE, 
-                  debug = FALSE){
+                  addgridlines = TRUE){
     
     ## ADD BACKGROUND
     tmp <- par("usr")

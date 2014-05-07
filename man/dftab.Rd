@@ -1,78 +1,62 @@
 \name{dftab}
+
 \alias{dftab}
 %- Also NEED an '\alias' for EACH other topic documented here.
-\title{
-dftab
-}
+
+\title{Enhanced table}
+
 \description{
-%%  ~~ A concise (1-5 lines) description of what the function does. ~~
+Just like \code{table}, except that it's a \code{data.frame}, and it's sorted, 
+and there's a total
 }
+
 \usage{
-dftab(x, total = TRUE, sort = TRUE, debug = FALSE)
+dftab(x, total = TRUE, sort = TRUE)
 }
+
 %- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{x}{
-%%     ~~Describe \code{x} here~~
-}
-  \item{total}{
-%%     ~~Describe \code{total} here~~
-}
-  \item{sort}{
-%%     ~~Describe \code{sort} here~~
-}
-  \item{debug}{
-%%     ~~Describe \code{debug} here~~
-}
+  \item{x}{item passed to table, usually a vector}
+  \item{total}{Include TOTAL count? Default == TRUE}
+  \item{sort}{Sort output? Default == TRUE}
 }
 \details{
-%%  ~~ If necessary, more details than the description above ~~
-}
-\value{
-%%  ~Describe the value returned
-%%  If it is a LIST, use
-%%  \item{comp1 }{Description of 'comp1'}
-%%  \item{comp2 }{Description of 'comp2'}
-%% ...
-}
-\references{
-%% ~put references to the literature/web site here ~
-}
-\author{
-%%  ~~who you are~~
-}
-\note{
-%%  ~~further notes~~
+Quite frequently it's easier to deal with a data frame object than a table.
+
+Note, that sorting numbers will treat the numbers as text.
 }
 
-%% ~Make other sections like Warning with \section{Warning }{....} ~
+\value{
+Count of items in x returned as a \code{data.frame}.
+}
+
+\author{Gene Leynes}
 
 \seealso{
-%% ~~objects to See Also as \code{\link{help}}, ~~~
+\code{\link{table}}
 }
-\examples{
-##---- Should be DIRECTLY executable !! ----
-##-- ==>  Define data, use random,
-##--	or do  help(data=index)  for the standard data sets.
 
-## The function is currently defined as
-function (x, total = TRUE, sort = TRUE, debug = FALSE) 
-{
-    if (debug) 
-        browser()
-    df = table(x, useNA = "ifany")
-    if (sort) 
-        df = df[order(df)]
-    if (!sort) 
-        df = df[unique(x)]
-    names(df)[is.na(names(df))] = "NA"
-    df = data.frame(count = df)
-    if (total) 
-        df = rbind(df, TOTAL = sum(df))
-    return(df)
-  }
+\examples{
+
+set.seed(10)
+df <- data.frame(col1 = sample(c(rep(NA, 5), rpois(25, 7))),
+                 col2 = sample(letters[1:5], replace=TRUE),
+                 col3 = sample(letters[1:5], replace=TRUE))
+dftab(df$col1)
+
+#       count
+# 3         1
+# 9         1
+# 4         2
+# 10        2
+# 7         3
+# 5         4
+# 8         4
+# NA        5
+# 6         8
+# TOTAL    30
+
 }
-% Add one or more standard keywords, see file 'KEYWORDS' in the
-% R documentation directory.
-\keyword{ ~kwd1 }
-\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line
+
+
+

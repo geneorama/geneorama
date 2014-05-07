@@ -14,22 +14,12 @@ command line.
 }
 
 \details{
-%%  ~~ If necessary, more details than the description above ~~
+May not work from the command line.
 }
 
-\value{}
-
-\references{}
+\value{NULL}
 
 \author{Gene Leynes}
-
-\note{
-%%  ~~further notes~~
-}
-
-%% ~Make other sections like Warning with \section{Warning }{....} ~
-
-\seealso{}
 
 \examples{
 
@@ -46,5 +36,5 @@ plot(1:10)
 ## This will reset the par, with a warning
 reset_graphic_parameters()
 plot(1:10)
-
+}
 

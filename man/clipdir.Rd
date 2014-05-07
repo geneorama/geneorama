@@ -1,56 +1,28 @@
 \name{clipdir}
 \alias{clipdir}
-%- Also NEED an '\alias' for EACH other topic documented here.
-\title{
-clipdir
-}
+
+\title{Copy setwd(<current working directory>) to clipboard}
+
 \description{
-%%  ~~ A concise (1-5 lines) description of what the function does. ~~
+In the days before R Studio's elegant directory management, this was useful
+when opening new instances of R and quickly navigating to the same working
+directory as an existing instance, or for saving the current wd in a script 
+after manually navigating there.
 }
-\usage{
-clipdir()
-}
-%- maybe also 'usage' for other objects documented here.
+
+\usage{clipdir()}
+
 \details{
-%%  ~~ If necessary, more details than the description above ~~
+Only works in Windows!
 }
+
 \value{
-%%  ~Describe the value returned
-%%  If it is a LIST, use
-%%  \item{comp1 }{Description of 'comp1'}
-%%  \item{comp2 }{Description of 'comp2'}
-%% ...
-}
-\references{
-%% ~put references to the literature/web site here ~
-}
-\author{
-%%  ~~who you are~~
-}
-\note{
-%%  ~~further notes~~
+Modifies system clipboard (Windows only)
 }
 
-%% ~Make other sections like Warning with \section{Warning }{....} ~
+\author{Gene Leynes}
 
-\seealso{
-%% ~~objects to See Also as \code{\link{help}}, ~~~
-}
 \examples{
-##---- Should be DIRECTLY executable !! ----
-##-- ==>  Define data, use random,
-##--	or do  help(data=index)  for the standard data sets.
-
-## The function is currently defined as
-function () 
-{
-    temp = getwd()[1]
-    temp = paste("setwd('", temp, "')", sep = "")
-    write.table(temp, "clipboard", sep = "\t", col.names = FALSE, 
-        row.names = FALSE, quote = FALSE)
-  }
+require(geneorama)
+# clipdir()
 }
-% Add one or more standard keywords, see file 'KEYWORDS' in the
-% R documentation directory.
-\keyword{ ~kwd1 }
-\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line

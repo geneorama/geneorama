@@ -55,5 +55,5 @@ to compile the Rmd file.
 }
 
 \examples{
-
 ## This is too context specific to provide an example.
+}

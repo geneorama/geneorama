@@ -1,70 +1,45 @@
 \name{sourceDir}
 \alias{sourceDir}
-%- Also NEED an '\alias' for EACH other topic documented here.
+
 \title{
-sourceDir
+Source all the files in a directory
 }
+
 \description{
-%%  ~~ A concise (1-5 lines) description of what the function does. ~~
+Source all the files in a directory and print the file names.
 }
+
 \usage{
 sourceDir(path, trace = TRUE, ...)
 }
-%- maybe also 'usage' for other objects documented here.
+
 \arguments{
-  \item{path}{
-%%     ~~Describe \code{path} here~~
-}
-  \item{trace}{
-%%     ~~Describe \code{trace} here~~
-}
-  \item{\dots}{
-%%     ~~Describe \code{\dots} here~~
-}
-}
-\details{
-%%  ~~ If necessary, more details than the description above ~~
-}
-\value{
-%%  ~Describe the value returned
-%%  If it is a LIST, use
-%%  \item{comp1 }{Description of 'comp1'}
-%%  \item{comp2 }{Description of 'comp2'}
-%% ...
-}
-\references{
-%% ~put references to the literature/web site here ~
-}
-\author{
-%%  ~~who you are~~
-}
-\note{
-%%  ~~further notes~~
+  \item{path}{path to directory as character}
+  \item{trace}{Default: TRUE; prints file names}
+  \item{\dots}{Additional arguments passed to \code{source}}
 }
 
-%% ~Make other sections like Warning with \section{Warning }{....} ~
+\details{
+Source each file in order.
+}
+
+\value{
+NULL
+}
+
+\references{
+R help for \code{source}
+}
+
+\author{Gene Leynes}
+
+\note{No error handling.}
 
 \seealso{
-%% ~~objects to See Also as \code{\link{help}}, ~~~
+\code{\link{source}}
 }
-\examples{
-##---- Should be DIRECTLY executable !! ----
-##-- ==>  Define data, use random,
-##--	or do  help(data=index)  for the standard data sets.
 
-## The function is currently defined as
-function (path, trace = TRUE, ...) 
-{
-    for (nm in list.files(path, pattern = "\\.[Rr]$")) {
-        if (trace) 
-            cat(nm, ":")
-        source(file.path(path, nm), ...)
-        if (trace) 
-            cat("\n")
-    }
-  }
+\examples{
+# sourceDir("directoryName")
 }
-% Add one or more standard keywords, see file 'KEYWORDS' in the
-% R documentation directory.
-\keyword{ ~kwd1 }
-\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line
+

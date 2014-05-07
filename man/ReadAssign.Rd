@@ -43,8 +43,8 @@ ReadAssign(x, assignGlobal = TRUE)
 \seealso{
 %% ~~objects to See Also as \code{\link{help}}, ~~~
 }
-\examples{
 
+\examples{
 require(geneorama)
 
 MyExampleData <- data.frame(x=letters, y=rnorm(length(letters)))
@@ -54,3 +54,4 @@ ReadAssign("MyExampleData.Rds")
 CopyOfMyExampleData <- ReadAssign("MyExampleData.Rds", FALSE)
 ls()
 unlink("MyExampleData.Rds"); rm(MyExampleData, CopyOfMyExampleData)  ## Clean up
+}

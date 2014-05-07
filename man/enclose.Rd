@@ -1,8 +1,10 @@
 \name{enclose}
+
 \alias{enclose}
-%- Also NEED an '\alias' for EACH other topic documented here.
+
+
 \title{
-enclose
+Create the text of the command that would make a data object
 }
 \description{
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~
@@ -12,49 +14,30 @@ enclose(x)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{x}{
-%%     ~~Describe \code{x} here~~
-}
+  \item{x}{Works best if x is a vector.}
 }
 \details{
 %%  ~~ If necessary, more details than the description above ~~
 }
 \value{
-%%  ~Describe the value returned
-%%  If it is a LIST, use
-%%  \item{comp1 }{Description of 'comp1'}
-%%  \item{comp2 }{Description of 'comp2'}
-%% ...
-}
-\references{
-%% ~put references to the literature/web site here ~
-}
-\author{
-%%  ~~who you are~~
-}
-\note{
-%%  ~~further notes~~
+Text that would roughly evaluate to the object.
 }
 
-%% ~Make other sections like Warning with \section{Warning }{....} ~
+\author{Gene Leynes}
+
+\note{
+This is a bad version of deparse before I knew about deparse... but it's still
+occasionally useful, especially when combined with \code{\link{clipper}}.
+}
 
 \seealso{
-%% ~~objects to See Also as \code{\link{help}}, ~~~
+\code{\link{deparse}}
 }
 \examples{
-##---- Should be DIRECTLY executable !! ----
-##-- ==>  Define data, use random,
-##--	or do  help(data=index)  for the standard data sets.
 
-## The function is currently defined as
-function (x) 
-{
-    step1 = paste(x, collapse = "', '")
-    step2 = paste("c('", step1, "')", sep = "")
-    return(step2)
-  }
+enclose(rnorm(10))
+# "c('0.018130268180236', '-1.23898951831708', '-0.198405479640197', 
+# '0.211568161388036', '-0.0227780654230781', '1.08823221976137', 
+# '-0.102064404487439', '-1.55052536125024', '2.51492182878254', 
+# '0.434675924710012')"
 }
-% Add one or more standard keywords, see file 'KEYWORDS' in the
-% R documentation directory.
-\keyword{ ~kwd1 }
-\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line

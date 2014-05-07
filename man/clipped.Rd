@@ -1,66 +1,38 @@
 \name{clipped}
 \alias{clipped}
 
-\title{
-clipped
-}
+\title{Read table from clipboard}
+
 \description{
-%%  ~~ A concise (1-5 lines) description of what the function does. ~~
+Read a table from the clipboard. Works well with Windows and Excel. Can also be useful for items copied from a text editor or other clipboard objects.
 }
 \usage{
 clipped(lowercase = TRUE, removedot = TRUE)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{lowercase}{
-%%     ~~Describe \code{lowercase} here~~
-}
-  \item{removedot}{
-%%     ~~Describe \code{removedot} here~~
-}
+  \item{lowercase}{Set to FALSE to keep the case of column names}
+  \item{removedot}{The default, TRUE, will remove any .'s from the column names
+                   which usually indicates illegal characters generated from
+                   a call to \code{make.names}.}
 }
 \details{
-%%  ~~ If necessary, more details than the description above ~~
-}
-\value{
-%%  ~Describe the value returned
-%%  If it is a LIST, use
-%%  \item{comp1 }{Description of 'comp1'}
-%%  \item{comp2 }{Description of 'comp2'}
-%% ...
-}
-\references{
-%% ~put references to the literature/web site here ~
-}
-\author{
-%%  ~~who you are~~
-}
-\note{
-%%  ~~further notes~~
-}
+The clipboard is easy to access on Windows, and so this function is not 
+available in Linux or Mac platforms.  This function is a glorified call to 
+read.delim("clipboard"), so it only recognizes tab delimited data.}
 
-%% ~Make other sections like Warning with \section{Warning }{....} ~
+\value{Data frame with default options.}
+
+\author{Gene Leynes}
+
+\note{Windows OS only.}
 
 \seealso{
-%% ~~objects to See Also as \code{\link{help}}, ~~~
+\code{\link{read.delim}}
 }
-\examples{
-##---- Should be DIRECTLY executable !! ----
-##-- ==>  Define data, use random,
-##--	or do  help(data=index)  for the standard data sets.
 
-## The function is currently defined as
-function (lowercase = TRUE, removedot = TRUE) 
-{
-    x = read.delim("clipboard")
-    if (lowercase) 
-        colnames(x) = tolower(colnames(x))
-    if (removedot) 
-        colnames(x) = gsub("\\.", "", colnames(x))
-    return(x)
-  }
+\examples{
+##  NOT RUN:
+## Copy something in excel
+## x = clipped()
 }
-% Add one or more standard keywords, see file 'KEYWORDS' in the
-% R documentation directory.
-\keyword{ ~kwd1 }
-\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line

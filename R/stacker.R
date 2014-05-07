@@ -2,16 +2,15 @@ stacker <-
 function(x,id=NULL,vars=NULL,labs=c('variable','value')){
 	## SAMPLE USAGE:
 	if(FALSE){
-		dat=data.frame(
-				groups1=as.factor(sample(letters,100, replace=TRUE)),
-				groups2=as.factor(sample(LETTERS,100, replace=TRUE)),
-				var1=rnorm(100),
-				var2=rnorm(100,4,3),
-				var3=rnorm(100,-4,3),
-				var4=rnorm(100,4,30))
-		stdat = stacker(dat, id='groups1', vars=c('var1', 'var2', 'var3'))
-		str(stdat)
-		stdat = stacker(dat, id='groups1', vars=c('var1', 'var2', 'varx'))
+	    dat <- data.frame(
+	        groups1 = as.factor(sample(letters,100, replace=TRUE)),
+	        groups2 = as.factor(sample(LETTERS,100, replace=TRUE)),
+	        var1 = rnorm(100),
+	        var2 = rnorm(100,4,3),
+	        var3 = rnorm(100,-4,3),
+	        var4 = rnorm(100,4,30))
+	    stdat <- stacker(dat, id='groups1', vars=c('var1', 'var2', 'var3'))
+	    str(stdat)
 	}
 	
 	## Check that the user entered the id and vars labels

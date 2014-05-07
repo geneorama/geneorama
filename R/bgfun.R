@@ -1,6 +1,5 @@
 bgfun <-
-function(color='honeydew2',linecolor='grey45', addgridlines=TRUE, debug=FALSE){
-	if(debug)browser()
+function(color='honeydew2',linecolor='grey45', addgridlines=TRUE){
 	tmp=par("usr")
 	rect(tmp[1], tmp[3], tmp[2], tmp[4], col=color)
 	if(addgridlines){

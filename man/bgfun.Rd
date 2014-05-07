@@ -1,75 +1,55 @@
 \name{bgfun}
 \alias{bgfun}
-%- Also NEED an '\alias' for EACH other topic documented here.
+
 \title{
-bgfun
-}
-\description{
-%%  ~~ A concise (1-5 lines) description of what the function does. ~~
-}
-\usage{
-bgfun(color = "honeydew2", linecolor = "grey45", addgridlines = TRUE, debug = FALSE)
-}
-%- maybe also 'usage' for other objects documented here.
-\arguments{
-  \item{color}{
-%%     ~~Describe \code{color} here~~
-}
-  \item{linecolor}{
-%%     ~~Describe \code{linecolor} here~~
-}
-  \item{addgridlines}{
-%%     ~~Describe \code{addgridlines} here~~
-}
-  \item{debug}{
-%%     ~~Describe \code{debug} here~~
-}
-}
-\details{
-%%  ~~ If necessary, more details than the description above ~~
-}
-\value{
-%%  ~Describe the value returned
-%%  If it is a LIST, use
-%%  \item{comp1 }{Description of 'comp1'}
-%%  \item{comp2 }{Description of 'comp2'}
-%% ...
-}
-\references{
-%% ~put references to the literature/web site here ~
-}
-\author{
-%%  ~~who you are~~
-}
-\note{
-%%  ~~further notes~~
+Add a background to a plot
 }
 
-%% ~Make other sections like Warning with \section{Warning }{....} ~
+\description{
+Adds a non-transparent background to plots, with gridlines for more professional
+looking plots that are easier to read. The color can be customized, the 
+default is the built in color "honeydew2".
+}
+
+\usage{
+bgfun(color = "honeydew2", 
+      linecolor = "grey45", 
+      addgridlines = TRUE)
+}
+
+\arguments{
+  \item{color}{Color value passed to \code{rect}}
+  \item{linecolor}{Color used for gridlines}
+  \item{addgridlines}{Add gridlines? Default is TRUE}
+}
+
+\author{Gene Leynes}
+
+\note{Uses panel.first}
+
+\section{Warning }{
+panel.first (in plot.default) is not supported in plot.formula!
+
+See workaround below
+
+http://r-project.markmail.org/thread/b4szqhorzynnzfhs
+}
 
 \seealso{
-%% ~~objects to See Also as \code{\link{help}}, ~~~
+\code{\link{addbg}},
+\code{\link{panel.first}}
 }
-\examples{
-##---- Should be DIRECTLY executable !! ----
-##-- ==>  Define data, use random,
-##--	or do  help(data=index)  for the standard data sets.
 
-## The function is currently defined as
-function (color = "honeydew2", linecolor = "grey45", addgridlines = TRUE, 
-    debug = FALSE) 
-{
-    if (debug) 
-        browser()
-    tmp = par("usr")
-    rect(tmp[1], tmp[3], tmp[2], tmp[4], col = color)
-    if (addgridlines) {
-        ylimits = par()$usr[c(3, 4)]
-        abline(h = pretty(ylimits, 10), lty = 2, col = linecolor)
-    }
-  }
+\examples{
+
+## Example of plot.default:
+plot(rnorm(100), panel.first=bgfun())
+
+## Example of plot.formula workaround:
+df = data.frame(x = 1:100,
+                y = rnorm(100))
+plot(y~x, data=df, type="n")
+points(y~x, data=df, panel.first=bgfun())
+
+
 }
-% Add one or more standard keywords, see file 'KEYWORDS' in the
-% R documentation directory.
-\keyword{ ~kwd1 }
-\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line

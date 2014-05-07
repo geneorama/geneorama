@@ -1,77 +1,84 @@
 \name{headstr}
+
 \alias{headstr}
-%- Also NEED an '\alias' for EACH other topic documented here.
-\title{
-headstr
-}
+
+\title{shorter version of "str"}
+
 \description{
-%%  ~~ A concise (1-5 lines) description of what the function does. ~~
+Shows the structure of just the first 25 (by default) columns of a data.frame.
+Useful when dealing with giant data sets that have many columns.
 }
+
 \usage{
 headstr(x, nrows = 5, ncols = 25)
 }
-%- maybe also 'usage' for other objects documented here.
+
 \arguments{
-  \item{x}{
-%%     ~~Describe \code{x} here~~
-}
-  \item{nrows}{
-%%     ~~Describe \code{nrows} here~~
-}
-  \item{ncols}{
-%%     ~~Describe \code{ncols} here~~
-}
-}
-\details{
-%%  ~~ If necessary, more details than the description above ~~
-}
-\value{
-%%  ~Describe the value returned
-%%  If it is a LIST, use
-%%  \item{comp1 }{Description of 'comp1'}
-%%  \item{comp2 }{Description of 'comp2'}
-%% ...
-}
-\references{
-%% ~put references to the literature/web site here ~
-}
-\author{
-%%  ~~who you are~~
-}
-\note{
-%%  ~~further notes~~
+  \item{x}{data.frame or data.table}
+  \item{nrows}{Number of rows to show}
+  \item{ncols}{Number of columns to show}
 }
 
-%% ~Make other sections like Warning with \section{Warning }{....} ~
+\details{
+Trims the data.frame or data.table to show a smaller subset of the data in 
+the structure. Does not modify the object or return a value.
+
+Although the str() result is not correct for the entire data set, headstr does
+report the total columns and list the first 25 (by default) column names.
+}
+
+\value{
+str()
+}
+
+\author{Gene Leynes}
+
+\note{
+This could also be accomplished using the arguments of str.
+}
 
 \seealso{
-%% ~~objects to See Also as \code{\link{help}}, ~~~
+\code{\link{str}}
 }
-\examples{
-##---- Should be DIRECTLY executable !! ----
-##-- ==>  Define data, use random,
-##--	or do  help(data=index)  for the standard data sets.
 
-## The function is currently defined as
-function (x, nrows = 5, ncols = 25) 
-{
-    nrows = min(nrow(x), nrows)
-    ncols = min(ncol(x), ncols)
-    cat("Row Names: (", nrows, " of ", nrow(x), " rows shown) \n", 
-        sep = "")
-    print(rownames(x)[1:nrows])
-    cat("\n")
-    cat("Column Names: (", ncols, " of ", ncol(x), " columns shown)\n", 
-        sep = "")
-    print(colnames(x)[1:ncols])
-    cat("\n")
-    if (ncols < ncol(x)) 
-        cat("The structure of the first", ncols, "of", ncol(x), 
-            "Columns:\n\n", sep = " ")
-    str(x[, 1:ncols])
-  }
+\examples{
+df <- matrix(NA, nrow=1e4, ncol=1e3)
+df <- data.frame(df)
+headstr(df)
+
+# Row Names: (5 of 10000 rows shown) 
+# [1] "1" "2" "3" "4" "5"
+# 
+# Column Names: (25 of 1000 columns shown)
+#  [1] "X1"  "X2"  "X3"  "X4"  "X5"  "X6"  "X7"  "X8"  "X9"  "X10" "X11" "X12" "X13" "X14" "X15" "X16" "X17" "X18" "X19" "X20"
+# [21] "X21" "X22" "X23" "X24" "X25"
+# 
+# The structure of the first 25 of 1000 Columns:
+# 
+# 'data.frame':    10000 obs. of  25 variables:
+#  $ X1 : logi  NA NA NA NA NA NA ...
+#  $ X2 : logi  NA NA NA NA NA NA ...
+#  $ X3 : logi  NA NA NA NA NA NA ...
+#  $ X4 : logi  NA NA NA NA NA NA ...
+#  $ X5 : logi  NA NA NA NA NA NA ...
+#  $ X6 : logi  NA NA NA NA NA NA ...
+#  $ X7 : logi  NA NA NA NA NA NA ...
+#  $ X8 : logi  NA NA NA NA NA NA ...
+#  $ X9 : logi  NA NA NA NA NA NA ...
+#  $ X10: logi  NA NA NA NA NA NA ...
+#  $ X11: logi  NA NA NA NA NA NA ...
+#  $ X12: logi  NA NA NA NA NA NA ...
+#  $ X13: logi  NA NA NA NA NA NA ...
+#  $ X14: logi  NA NA NA NA NA NA ...
+#  $ X15: logi  NA NA NA NA NA NA ...
+#  $ X16: logi  NA NA NA NA NA NA ...
+#  $ X17: logi  NA NA NA NA NA NA ...
+#  $ X18: logi  NA NA NA NA NA NA ...
+#  $ X19: logi  NA NA NA NA NA NA ...
+#  $ X20: logi  NA NA NA NA NA NA ...
+#  $ X21: logi  NA NA NA NA NA NA ...
+#  $ X22: logi  NA NA NA NA NA NA ...
+#  $ X23: logi  NA NA NA NA NA NA ...
+#  $ X24: logi  NA NA NA NA NA NA ...
+#  $ X25: logi  NA NA NA NA NA NA ...
 }
-% Add one or more standard keywords, see file 'KEYWORDS' in the
-% R documentation directory.
-\keyword{ ~kwd1 }
-\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line

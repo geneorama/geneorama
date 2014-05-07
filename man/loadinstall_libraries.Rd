@@ -41,8 +41,8 @@ close to you.  You can get a list of repositories here: \link[http://cran.r-proj
 }
 
 \examples{
-    require(geneorama)
-    required_packages <- c("ggplot2", "data.table")
-    loadinstall_libraries("required_packages")
+require(geneorama)
+required_packages <- c("ggplot2", "data.table")
+loadinstall_libraries(required_packages)
 }
 

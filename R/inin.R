@@ -1,6 +1,4 @@
-inin <-
-function(x,y,debug=FALSE){
-	if(debug==TRUE)browser()
+inin <- function(x, y){
 	if(!is.null(dim(x)) | !is.null(dim(y))) {
 		print("Requires vector args")
 		return(NULL)

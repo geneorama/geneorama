@@ -1,7 +1,6 @@
 YahooAdjCloseAsZoo <-
-function(x,freq='monthly',begin='2000-01-01',end=Sys.timeDate(),debug=FALSE){
-	require(fImport)
-	if(debug)browser()
+function(x,freq='monthly',begin='2000-01-01',end=Sys.timeDate()){
+	# require(fImport)
 	#----------------------------------------------------------------------
 	# DEFINE internal DOWNLOAD FUNCTION
 	#----------------------------------------------------------------------

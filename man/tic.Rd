@@ -1,51 +1,53 @@
 \name{tic}
 \alias{tic}
-%- Also NEED an '\alias' for EACH other topic documented here.
+\alias{toc}
+
 \title{
-tic
+Matlab type functions for tracking time
 }
+
 \description{
-%%  ~~ A concise (1-5 lines) description of what the function does. ~~
+Call \code{tick} at the top of a script to start the timer, and \code{toc} 
+later on to print the elapsed times.
 }
+
 \usage{
 tic()
-}
-%- maybe also 'usage' for other objects documented here.
-\details{
-%%  ~~ If necessary, more details than the description above ~~
-}
-\value{
-%%  ~Describe the value returned
-%%  If it is a LIST, use
-%%  \item{comp1 }{Description of 'comp1'}
-%%  \item{comp2 }{Description of 'comp2'}
-%% ...
-}
-\references{
-%% ~put references to the literature/web site here ~
-}
-\author{
-%%  ~~who you are~~
-}
-\note{
-%%  ~~further notes~~
+toc()
 }
 
-%% ~Make other sections like Warning with \section{Warning }{....} ~
+\details{
+tic and toc are convenience functions to print elapsed time.
+
+\code{tic} and \code{toc} use \code{proc.time}, which is depricated, use
+\code{system.time} instead (although \code{proc.time} is a lot easier for 
+this use case).
+}
+
+\value{
+NULL
+}
+
+
+\author{Gene Leynes}
+
+\note{
+See details.
+}
 
 \seealso{
-%% ~~objects to See Also as \code{\link{help}}, ~~~
+\code{\link{system.time}},
+\code{\link{proc.time}},
 }
-\examples{
-##---- Should be DIRECTLY executable !! ----
-##-- ==>  Define data, use random,
-##--	or do  help(data=index)  for the standard data sets.
 
-## The function is currently defined as
-function () 
-ticTime <<- proc.time()
+\examples{
+tic()
+print('hi there')
+toc()
+invisible(rnorm(1e7))
+toc()
+invisible(rnorm(1e7))
+toc()
+print('good bye')
+toc()
 }
-% Add one or more standard keywords, see file 'KEYWORDS' in the
-% R documentation directory.
-\keyword{ ~kwd1 }
-\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line

@@ -1,62 +1,50 @@
 \name{comma}
 \alias{comma}
-%- Also NEED an '\alias' for EACH other topic documented here.
+
 \title{
-comma
+Add comma format to numbers
 }
+
 \description{
-%%  ~~ A concise (1-5 lines) description of what the function does. ~~
+This adds some leading space and commas to a number.
+
+There are better ways to do this, but the code does have a nice example of 
+for mapply.
 }
+
 \usage{
 comma(x, nDigits = 2)
 }
-%- maybe also 'usage' for other objects documented here.
+
+
 \arguments{
-  \item{x}{
-%%     ~~Describe \code{x} here~~
-}
-  \item{nDigits}{
-%%     ~~Describe \code{nDigits} here~~
-}
-}
-\details{
-%%  ~~ If necessary, more details than the description above ~~
-}
-\value{
-%%  ~Describe the value returned
-%%  If it is a LIST, use
-%%  \item{comp1 }{Description of 'comp1'}
-%%  \item{comp2 }{Description of 'comp2'}
-%% ...
-}
-\references{
-%% ~put references to the literature/web site here ~
-}
-\author{
-%%  ~~who you are~~
-}
-\note{
-%%  ~~further notes~~
+  \item{x}{Number or vector of numbers}
+  \item{nDigits}{Doesn't currently work... was supposed to add trailing digits.}
 }
 
-%% ~Make other sections like Warning with \section{Warning }{....} ~
+
+\value{
+Vector of class character.
+}
+
+\author{Gene Leynes}
+
+\note{
+This function is likely to be deleted or change in the future.
+}
+
 
 \seealso{
-%% ~~objects to See Also as \code{\link{help}}, ~~~
+\code{\link{formatC}}
 }
-\examples{
-##---- Should be DIRECTLY executable !! ----
-##-- ==>  Define data, use random,
-##--	or do  help(data=index)  for the standard data sets.
 
-## The function is currently defined as
-function (x, nDigits = 2) 
-{
-    nDigits2 = trunc(log(abs(x), 10)) + 1 + nDigits
-    mapply(formatC, x = x, digits = nDigits2, big.mark = ",")
-  }
+\examples{
+
+comma(100000)
+# [1] "  100,000"
+
+comma(100000:100010)
+# [1] "  100,000" "  100,001" "  100,002" "  100,003" "  100,004" "  100,005" 
+# [7] "  100,006" "  100,007" "  100,008" "  100,009" "  100,010"
+
 }
-% Add one or more standard keywords, see file 'KEYWORDS' in the
-% R documentation directory.
-\keyword{ ~kwd1 }
-\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line

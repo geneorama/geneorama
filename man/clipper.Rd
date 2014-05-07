@@ -1,54 +1,43 @@
 \name{clipper}
+
 \alias{clipper}
-%- Also NEED an '\alias' for EACH other topic documented here.
-\title{
-clipper
-}
-\description{
-%%  ~~ A concise (1-5 lines) description of what the function does. ~~
-}
+
+\title{clipper}
+
+\description{Copy object to the clipboard}
+
 \usage{
 clipper(x)
 }
-%- maybe also 'usage' for other objects documented here.
+
 \arguments{
-  \item{x}{
-%%     ~~Describe \code{x} here~~
+  \item{x}{Usually a vector or data.frame}
 }
-}
+
 \details{
-%%  ~~ If necessary, more details than the description above ~~
-}
-\value{
-%%  ~Describe the value returned
-%%  If it is a LIST, use
-%%  \item{comp1 }{Description of 'comp1'}
-%%  \item{comp2 }{Description of 'comp2'}
-%% ...
-}
-\references{
-%% ~put references to the literature/web site here ~
-}
-\author{
-%%  ~~who you are~~
-}
-\note{
-%%  ~~further notes~~
+
+This is only available on Windows.
+
+This makes it very easy to copy things into Excel on windows, but it's memory 
+constrained.
+
+This is just a glorified copy to the clipboard:
+write.table(x, "clipboard", sep = "\\t", col.names = TRUE, row.names = FALSE)
 }
 
-%% ~Make other sections like Warning with \section{Warning }{....} ~
+\value{ NULL }
 
-\seealso{
-%% ~~objects to See Also as \code{\link{help}}, ~~~
-}
+\author{Gene Leynes}
+
+\note{Only works for smallish objects, perfect for summary tables that you want
+to drop into Excel or a text editor.}
+
 \examples{
-##---- Should be DIRECTLY executable !! ----
-##-- ==>  Define data, use random,
-##--	or do  help(data=index)  for the standard data sets.
 
-## The function is currently defined as
-function (x) 
-write.table(x, "clipboard", sep = "\t", col.names = TRUE, row.names = FALSE)
+df <- data.frame(col1=rnorm(10), col2=letters[1:10])
+clipper(df)
+## Now go paste this somewhere else! Try Excel or Open Office (if you must)
+
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.

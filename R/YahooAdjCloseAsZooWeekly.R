@@ -1,7 +1,7 @@
 YahooAdjCloseAsZooWeekly <-
 function(symbols, ...){
-    require('zoo')
-    require('fImport')
+    # require('zoo')
+    # require('fImport')
 
     
     prices = YahooAdjCloseAsZoo(symbols, freq='weekly', ...)
