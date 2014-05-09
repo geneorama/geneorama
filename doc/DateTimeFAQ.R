@@ -1,6 +1,13 @@
 
 
 
+
+## Way to do backreference substitution in R to fix short year:
+gsub("([0-9][0-9])$", "20\\1", c("3/17/12", "12/18/12"))
+## See more in date conversion function (not checked in yet)
+
+
+
 ## Read time zone info
 tzfile <- file.path(R.home("share"), "zoneinfo", "zone.tab")
 tzones <- read.delim(tzfile, row.names = NULL, header = FALSE,
