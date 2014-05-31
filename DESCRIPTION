@@ -5,7 +5,7 @@ Version: 1.2
 Date: 2012-01-30
 Author: Gene Leynes
 Maintainer: Gene Leynes <rpackage@geneorama.com>
-Depends: PBSmodelling, fImport, gtools, zoo
+Enhances: PBSmodelling, fImport, gtools, zoo
 Description: This is an assortment of utilities that I personally use on a 
              regular basis. Documentation is minimal at this point.
 License: LGPL (>= 2.0, < 3) | Mozilla Public License
