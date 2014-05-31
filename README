@@ -3,7 +3,7 @@
 How to install geneorama:
 
 
-``` R
+```R
 if("geneorama" %in% installed.packages()[ , "Package"]){
 	remove.packages("geneorama")
 }
