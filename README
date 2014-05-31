@@ -1,0 +1,14 @@
+
+
+How to install geneorama:
+
+
+``` R
+if("geneorama" %in% installed.packages()[ , "Package"]){
+	remove.packages("geneorama")
+}
+source("http://geneorama.com/code/loadinstall_geneorama_1.2.R") 
+loadinstall_geneorama()
+```
+
+
