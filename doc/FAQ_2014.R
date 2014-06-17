@@ -25,6 +25,8 @@
 ## Tables, Shingles, ftable, lapply
 ## Wide to tall using data.table
 ## Reshape using Pivot function
+## Reshape using dcast.data.table
+
 ## Tables and apply functions
 
 ## REPORTING
@@ -543,10 +545,44 @@ PrintDeparsedVals(aa = 'onething', bb = 1:100)
 ##------------------------------------------------------------------------------
 ## Wide to tall using data.table
 ##------------------------------------------------------------------------------
+library(data.table)
+library(reshape2)
 dt <- data.table(uid=c("a","b"), var1=c(1,2), var2=c(100,200))
 dt
 melt(dt, id=c("uid"))
+## Confusing way:
 dt[, list(variable = names(.SD), value = unlist(.SD, use.names = F)), by = uid]
+detach(package:reshape2)
+detach(package:data.table)
+
+##------------------------------------------------------------------------------
+## Reshape with dcast.data.table
+##------------------------------------------------------------------------------
+library(data.table)
+
+dt <- data.table(id = c(1,1,2,2), 
+                 region = c("a","b","a","b"),
+                 date = Sys.Date(),
+                 count = c(6,7,8,9))
+dt
+dcast.data.table(data = dt, 
+                 formula = id ~ region + date)
+dcast.data.table(data = dt, 
+                 formula = id ~ region + date,
+                 value.var = "count")
+dcast.data.table(data = dt,
+                 formula = id ~ date,
+                 value.var = "count")
+dcast.data.table(data = dt,
+                 formula = id ~ region,
+                 value.var = "date")
+
+## Reshape and aggregate by "sum"
+dcast.data.table(data = dt,
+                 fun.aggregate = sum,
+                 formula = id ~ date,
+                 value.var = "count")
+
 
 ##------------------------------------------------------------------------------
 ## Reshape using Pivot function
