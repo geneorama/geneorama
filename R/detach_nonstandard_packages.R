@@ -22,7 +22,9 @@ detach_nonstandard_packages <- function(
     for(pkg in attached_packages){
         if(! pkg %in% standard_packages){
             cat('Detaching:', pkg, '\n')
-            detach(paste('package:', pkg, sep=''), character.only=TRUE)
+            detach(paste('package:', pkg, sep=''), 
+                   character.only = TRUE, 
+                   unload = TRUE)
         }
     }
 }
