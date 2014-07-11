@@ -23,7 +23,7 @@ detach_nonstandard_namespaces <- function(
             }
         }
     }
-    if(i == 20){
+    if(i == maxiter){
         warning('max iterations reached in detach_nonstandard_namespaces')
     }
 }
