@@ -7,8 +7,10 @@ round_weeks <- function(x){
 									 'Thursday', 'Friday', 'Saturday'),
 						 offset = -(0:6))
 	dt <- merge(dt, offset, by="weekday")
-	dt[ , day_adj := day + offset]
-	dt[ , weekday_adj := weekdays(day_adj)]
-	setkey(dt, i)
-	return(dt[,day_adj])
+	
+    # dt[ , day_adj := day + offset]
+	dt$day_adj <- dt$day + dt$offset
+	
+    setkey(dt, i)
+	return(dt$day_adj)
 }
