@@ -12,9 +12,9 @@ Some things that I've accumulated over the years.
 \tabular{ll}{
 Package: \tab geneorama\cr
 Type: \tab Package\cr
-Version: \tab 1.0\cr
+Version: \tab 1.3\cr
 Date: \tab 2012-02-07\cr
-License: \tab What license is it under?\cr
+License: \tab LGPL (>= 2.0, < 3) | Mozilla Public License\cr
 }
 
 }
