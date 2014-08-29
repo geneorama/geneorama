@@ -70,6 +70,24 @@
 #### Example - Programming - Try catch
 #### 
 
+##-----------------------------------------------------------
+## Update R
+##-----------------------------------------------------------
+## First, install the new version of R
+## Second, make v0 the path to your old library and v1 the 
+## path to the new library
+    v0 = 'C:/Users/375492/Documents/R/R-3.1.0/library/'
+    v1 = 'C:/Program Files/R/R-3.1.1/library'
+
+## These are the packages that didn't copy over:
+    list.files(v0)[!list.files(v0)%in%list.files(v1)]
+
+## Now, just install geneorama and then the missing 
+## packages!
+    install.packages('devtools')
+    devtools::install_github("geneorama/geneorama")
+    library(geneorama)
+    loadinstall_libraries(list.files(v0)[!list.files(v0) %in% list.files(v1)])
 
 ##-----------------------------------------------------------
 ## Startup / System / Environment
