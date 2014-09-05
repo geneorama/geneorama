@@ -1,3 +1,24 @@
+#' @name   inin
+#' @title  Table of what elements are in x and y
+#' @author Gene Leynes
+#'
+#' @param x   A vector
+#' @param y   A vector
+#' 
+#'
+#' @description
+#' 		A function that tables the degree of overlap between two vectors.
+#' 		
+#' @details
+#' 		This will probably change. 
+#'
+#' @examples
+#'		inin(x = sample(letters[1:5], 100, T), y = sample(letters[3:8], 100, T))
+#'
+#'
+#'
+
+
 inin <- function(x, y){
 	if(!is.null(dim(x)) | !is.null(dim(y))) {
 		print("Requires vector args")

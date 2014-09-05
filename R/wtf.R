@@ -1,3 +1,19 @@
+#' @name   wtf
+#' @title  "Write Temp Function" will write a matrix / data.table / data.frame
+#'         to a temp csv file and attempt to open it with the registered 
+#'         application (hopefully in Excel)
+#' @author Gene Leynes
+#'
+#' @description
+#' 		"Write Temp Function" will write a matrix / data.table / data.frame
+#' 		to a temp csv file and attempt to open it with the registered 
+#' 		application (hopefully in Excel)
+#'
+#' @details
+#'      Has some logic to avoid name clashes when opening two objects of the
+#'      same name (e.g. say you open temp, change it, then open temp again)
+#' 		
+#' 	
 
 
 wtf <- function (x) {

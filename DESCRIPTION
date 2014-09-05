@@ -1,17 +1,15 @@
 Package: geneorama
 Type: Package
 Title: Gene's collection of miscellaneous functions
-Version: 1.3
+Version: 1.4
 Date: 2012-01-30
 Author: Gene Leynes
 Maintainer: Gene Leynes <rpackage@geneorama.com>
-Enhances: PBSmodelling, fImport, gtools, zoo
-Depends: data.table
-Imports: data.table
-Description: This is an assortment of utilities that I personally use on a 
-             regular basis. Documentation is minimal at this point.
-License: LGPL (>= 2.0, < 3) | Mozilla Public License
-LazyLoad: yes
-
-
-
+Depends:
+    R (>= 3.0.0),
+    data.table,
+    RUnit
+Description: This is an assortment of convenience utilities and documentation of
+    lessons learned (mostly the hard way) in R.  See FAQ.R in the doc
+    folder for "lessons learned".
+License: LGPL (>= 2.0, < 3) | Mozilla Public License + file LICENSE

@@ -1,5 +1,29 @@
-makebm <-
-function(mu=0.05, sigma=0.20, dt=1, T=10, sims=1e4){
+#' @name   makebm
+#' @title  Make a matrix simulating Brownian motion 
+#' @author Gene Leynes
+#'
+#' @param mu       Drift.  Default is 0.05, 
+#' @param sigma    Variance. Default is .20, 
+#' @param dt       Timestep.  Default is 1, 
+#' @param T        Total Timesteps / columns.  Default is 10, 
+#' @param sims     Simulations / rows. Default is 1e4
+#'
+#' @description
+#' 		Creates a matrix simulating Brownian motion
+#' 
+#' @details
+#' 		The makegm function is preferred for things like pricing options.
+#' 		
+#' 		
+#' @seealso
+#' 	\code{\link{makegm}},
+#'		
+#'
+#'
+#'
+
+
+makebm <- function(mu=0.05, sigma=0.20, dt=1, T=10, sims=1e4){
 	###############################################################################
 	## MakeBM - "Make Brownian Motion"
 	## Function to generate simple brownian motion

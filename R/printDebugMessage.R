@@ -1,5 +1,25 @@
-printDebugMessage <-
-function(DebugMode, msg=NULL, indent=0){
+#' @name   printDebugMessage
+#' @title  Embed within functions to optionally print debug mesagges at run time
+#' @author Gene Leynes
+#'
+#' @param DebugMode   Are you in debug mode now?  Default is FALSE 
+#' @param msg         Message to print.  Default is NULL
+#' @param indent      How far should msg be indented?  Default is 0, but 
+#'                    it's also modified internally
+#'
+#' @description
+#' 		Prints messages at runtime, optionally, at various levels to help debug.
+#' 		
+#' @details
+#' 		some details are... comming soon.
+#'
+#' 		
+#'		
+#'
+#'
+#'
+
+printDebugMessage <- function(DebugMode, msg=NULL, indent=0){
 	CurCallDepth = length(sys.calls())
 	if(CurCallDepth==1){
 		PreviousFunction='TopLevel'

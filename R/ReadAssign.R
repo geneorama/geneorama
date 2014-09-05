@@ -1,33 +1,113 @@
-
-##
-## Read an Rds file and assign the value to the global environment with a
-## the name implied from the filename
-##
-
-##
-## 2014-04-01   SJR   Updated to take a path and filename
-## 2014-05-05   GWL   Adding function to geneorama package
-## 2014-05-05   GWL   Adding $ to gsub pattern argument
-##
-
-## Usage:
-##     MyExampleData <- data.frame(x=letters, y=rnorm(length(letters)))
-##     saveRDS(MyExampleData, file="MyExampleData.Rds")
-##     rm(MyExampleData)
-##     ReadAssign("MyExampleData.Rds")
-##     ls()
-##     unlink("MyExampleData.Rds"); rm(MyExampleData)  ## Clean up
+#' @name   ReadAssign
+#' @title  Read in a list of files, and assign them to variables based on the
+#'         filename (or return as a list)
+#' @author Gene Leynes and Scott Rodgers
+#' 
+#' @param x               file name, and source of the future object name
+#' @param assignGlobal    Assign the object to the global space or return
+#'                        invisibly?  Default is TRUE, which assigns the 
+#'                        object globally.
+#'
+#' @description
+#' 		Read an Rds file and assign the value to the global environment with a
+#'		the name implied from the filename
+#'
+#' @details
+#' 		This function will open a serialized R object and assign the object to the
+#' 		name implied by the object.  For example a matrix saved as
+#' 		"Results/Yhat867.Rds" will be loaded and put into a matrix named
+#' 		"Yhat867" if you call \code{ReadAssign("Results/Yhat867.Rds")}.
+#'
+#' 		This function is particularly valuable when
+#' 		you use file names that match the object names you would use for the
+#' 		saved objects.
+#' 		For example, imagine that in a folder "results" you had 1,000 .Rds files
+#' 		named Vec0001.Rds, Vec0002.Rds ... up to Vec1000.Rds, and imagine that
+#' 		each file had one vector of length 60.  If you wanted to load Vec200.Rds
+#' 		to Vec299.Rds into memory you could get get the file names using
+#' 		\code{list.files}: \code{MyFiles <- list.files('results/', full.names=T,
+#' 		pattern = "vec2[0-9][0-9].Rds")}.  Then you could load those vectors
+#' 		into variables in the global enviornment using ReadAssign:
+#' 		\code{sapply(MyFiles, ReadAssign)}
+#' 		Since these happen to be the same length, you could also put them all
+#' 		into a matrix using this syntax:
+#' 		\code{MyMatrix <- sapply(MyFiles, ReadAssign, assignGlobal = F)}
+#'
+#' 		This pattern is useful when you 1) Use file names that match your
+#' 		object names 2) Have many files / objects and want to relaod all / some
+#' 		of them at different times.
+#'
+#' @note
+#' 		2014-04-01   SJR   Updated to take a path and filename
+#'
+#' 		2014-05-05   GWL   Adding function to geneorama package
+#'
+#' 		2014-05-05   GWL   Adding $ to gsub pattern argument
+#'
+#' @examples
+#' 		require(geneorama)
+#'		##----------------------------------------------------------------------
+#'		## Create example data, save it, then load it from disk using ReadAssign
+#'		##----------------------------------------------------------------------
+#' 		set.seed(27)
+#' 		## Generate Data
+#' 		MyExampleData <- data.frame(x=letters, y=rnorm(length(letters)))
+#' 		saveRDS(MyExampleData, file="MyExampleData.Rds")
+#' 		rm(MyExampleData)
+#' 		## MyExampleData" is no longer in the environment
+#' 		ls()
+#' 		## Now reload "MyExampleData"
+#' 		ReadAssign("MyExampleData.Rds")
+#' 		ls()
+#' 		## Clean up
+#' 		unlink("MyExampleData.Rds")
+#' 		rm(MyExampleData)
+#'
+#'
+#' 		\dontrun{
+#'		##----------------------------------------------------------------------
+#' 		## Example of making 600 files, and reloading 100 of them
+#'		##----------------------------------------------------------------------
+#'		mat <- matrix(rnorm(60000), 100, 600)
+#'      for(i in 1:ncol(mat)){
+#'          fp <-  file.path("ReadAssignExampleData",
+#'                           paste0("vec", sprintf("%03.f", i),".Rds"))
+#'          saveRDS(object = mat[,i],
+#'                  file = fp)
+#'      }
+#'      mat_recovered <- sapply(list.files('ReadAssignExampleData/',
+#'                                         full.names=T,
+#'                                         pattern = "vec3[0-9][0-9].Rds"),
+#'                              ReadAssign, assignGlobal = F)
+#' 		head(mat[,300:310])
+#' 		head(mat_recovered[,1:11])
+#' 		## Clean Up
+#' 		unlink("ReadAssignExampleData")
+#' 		rm(mat, mat_recovered)
+#' 		}
+#'
 
 ReadAssign <- function(x, assignGlobal = TRUE){
-    dat <- readRDS(x)
-    objname <- gsub("\\.Rds$", "", basename(x), ignore.case=TRUE)
-    if(assignGlobal){
-        assign(x=objname, value=dat, pos=.GlobalEnv)
-        invisible(objname)
-    } else {
-        return(dat)
-    }
+	dat <- readRDS(x)
+	objname <- gsub("\\.[Rr][Dd][Ss]$", "", basename(x), ignore.case=TRUE)
+	if(assignGlobal){
+		assign(x=objname, value=dat, pos=.GlobalEnv)
+		invisible(objname)
+	} else {
+		return(dat)
+	}
 }
+
+
+if(FALSE){
+	rm(list=ls())
+	source("R/ReadAssign.R")
+	source('tests/test.ReadAssign.R')
+	test.ReadAssign()
+}
+
+
+
 
 
 

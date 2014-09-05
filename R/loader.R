@@ -1,5 +1,27 @@
-loader <-
-function(x, xPath='.'){
+#' @name loader (DEPRICATED)
+#' @title Loads a single object into memory
+#' @author Gene Leynes
+#'
+#' @param x      filename
+#' @param xPath  filepath
+#'
+#' @description
+#' 		This was before I knew about readRDS.
+#' 		
+#' @details
+#' 		Use readRDS instead
+#' 		
+#' @seealso
+#' 	\code{\link{saver}},
+#' 	\code{\link[base]{readRDS.}}
+#'		
+#'
+#'
+#'
+
+
+
+loader <- function(x, xPath='.'){
 	## Check if x already has ".RData" at the end
 	if(length(grep('\\.[Rr][Dd]ata$', x))==0){
 		x=paste(x,'.RData',sep='')
