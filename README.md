@@ -10,18 +10,32 @@ You should consider these functions to be beta, and subject to change.
 How to install geneorama
 ---------------------------------
 
-Curently Geneorama is compiled and uploaded to my website.  You can install it in R with the commands below.  It uses the `loadinstall_geneorama()` to install geneorama.
 
+Method 1 (The easy way)
 
+Install from github using Hadley's package "devtools".
+Do this all within R
 ``` R
-# Remove geneorama if it's already installed
+## Remove geneorama if it's already installed
 if("geneorama" %in% installed.packages()[ , "Package"]){
    remove.packages("geneorama")
 }
-# Get the loadinstall_geneorama function:
-source("http://geneorama.com/code/loadinstall_geneorama_1.2.R") 
-# Use the loadinstall_geneorama function:
-loadinstall_geneorama()
+## Install devtools, if needed
+install.packages('devtools')
+
+## Install geneorama
+devtools::install_github("geneorama/geneorama")
 ```
+
+
+
+Method 2 (The slightly harder)
+Clone the geneorama repo at the command line
+Use R Studio to open the project and then build geneorama.
+(you basically click on the "build" command", you may have to install roxygen2)
+
+Method 3 (Hardest)
+Clone the geneorama repo at the command line
+Use R (from the command line) to build geneorama
 
 
