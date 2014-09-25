@@ -1,3 +1,6 @@
+# Getting started / FAQ for R
+
+Gene Leynes
 
 ## See also: http://www.statmethods.net/
 ## See also: http://rprogramming.net/how-tos/
@@ -5,7 +8,7 @@
 ## See also: http://pirategrunt.com/
 ## See also: 
 
-## TOC:
+## Table of Contents:
 
 ## Startup / System / Environment
 ## Packages
@@ -22,7 +25,7 @@
 ## recode
 ## expand.grid
 
-## Tables, Shingles, ftable, lapply
+## Tables, Shingles, lapply
 ## Wide to tall using data.table
 ## Reshape using Pivot function
 ## Reshape using dcast.data.table
@@ -537,7 +540,7 @@ PrintDeparsedVals(aa = 'onething', bb = 1:100)
 
 
 ##------------------------------------------------------------------------------
-## Tables, Shingles, ftable, lapply
+## Tables, Shingles, lapply
 ##------------------------------------------------------------------------------
 # Nice way to summarize by groups
   data(warpbreaks)
@@ -547,18 +550,6 @@ PrintDeparsedVals(aa = 'onething', bb = 1:100)
 # see also: shingle
   library(lattice)
   equal.count(rnorm(100))
-
-# Nice way to format a table
-  ftable(UCBAdmissions,
-    row.vars =c('Dept'), 
-    col.vars = c('Gender','Admit'))
-
-  df <- data.frame(
-    category = factor(sample(c(1,2,3),20,T),labels=c('a','b','c')),
-    time = runif(20,1,5)%/%1,
-    LbsEaten = ((rnorm(20)^2)*16) %/% 1 / 4)
-  df
-  ftable(df)
 
 ##------------------------------------------------------------------------------
 ## Wide to tall using data.table
