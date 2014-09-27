@@ -273,6 +273,25 @@ ret
 
 ```
 
+
+```{r}
+## Make a vector of NA's whose class isn't logical
+NA_real_
+
+## BAD
+df <- data.table(iris[1:10, ])
+df[ , Sepal.Total := NA]
+df[1:5, Sepal.Total := Sepal.Length + Sepal.Width]
+df
+## GOOD
+df <- data.table(iris[1:10, ])
+df[ , Sepal.Total := NA_real_]
+df[1:5, Sepal.Total := Sepal.Length + Sepal.Width]
+df
+
+```
+
+
 ## NOT YET ORGANIZED AS EXECUTIBLE:
 
 ```{r, eval=FALSE}
