@@ -17,7 +17,7 @@ A function that tables the degree of overlap between two vectors.
 This will probably change.
 }
 \examples{
-inin(x = sample(letters[1:5], 100, T), y = sample(letters[3:8], 100, T))
+inin(x = sample(letters[1:5], 100, TRUE), y = sample(letters[3:8], 100, TRUE))
 }
 \author{
 Gene Leynes
