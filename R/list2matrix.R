@@ -45,35 +45,62 @@
 #'
 #'
 
-list2matrix <- function(mylist, count=FALSE){
+
+list2matrix <- function (mylist, count = FALSE) {
 	Universe <- unique(unlist(mylist))
 	Universe <- Universe[!is.na(Universe)]
-	importlist_collapse <- vector(mode = "character",
-								  length = length(mylist))
-	for(i in 1:length(importlist_collapse)) {
-		importlist_collapse[i] <- paste(mylist[[i]], collapse = ", ")
-	}
-	mat <- matrix(data = 0,
-				  nrow = length(importlist_collapse),
+	mat <- matrix(data = 0, 
+				  nrow = length(mylist), 
 				  ncol = length(Universe))
-	for(j in 1:length(Universe)){
-		ii <- grep(Universe[j], importlist_collapse)
-		if(length(ii) > 0){
-			if(count){
-				for(i in ii){
-					mat[i, j] <- length(grep(Universe[j], mylist[i][[1]]))
-				}
-			} else {
-				mat[ii , j] <- 1
-			}
-			
-			
+	for (j in 1:length(Universe)) {
+		ii <- sapply(mylist, grepl, pattern=paste0("^",Universe[j],"$"))
+		ii <- sapply(unname(ii), sum)
+		if(!count){
+			ii <- pmin(ii, 1)
 		}
+		mat[, j] <- ii
 	}
 	rownames(mat) <- names(mylist)
 	colnames(mat) <- Universe
 	return(mat)
 }
+
+
+## Old code:
+## This is faster... so maybe it's worth fixing one day
+## however it doesn't work when one element of universe is contained in another
+## for example, in the example above with "watermellons" a list with "water" 
+## would also match on "watermellons"
+
+# list2matrix <- function(mylist, count=FALSE){
+# 	Universe <- unique(unlist(mylist))
+# 	Universe <- Universe[!is.na(Universe)]
+# 	importlist_collapse <- vector(mode = "character",
+# 								  length = length(mylist))
+# 	for(i in 1:length(importlist_collapse)) {
+# 		importlist_collapse[i] <- paste(mylist[[i]], collapse = ", ")
+# 	}
+# 	mat <- matrix(data = 0,
+# 				  nrow = length(importlist_collapse),
+# 				  ncol = length(Universe))
+# 	for(j in 1:length(Universe)){
+# 		ii <- grep(Universe[j], importlist_collapse)
+# 		if(length(ii) > 0){
+# 			if(count){
+# 				for(i in ii){
+# 					mat[i, j] <- length(grep(Universe[j], mylist[i][[1]]))
+# 				}
+# 			} else {
+# 				mat[ii , j] <- 1
+# 			}
+# 			
+# 			
+# 		}
+# 	}
+# 	rownames(mat) <- names(mylist)
+# 	colnames(mat) <- Universe
+# 	return(mat)
+# }
 
 
 
