@@ -1,0 +1,47 @@
+```{r,results='hide',echo=FALSE,message=FALSE}
+
+# devtools::install_github("renkun-ken/formattable")
+geneorama::loadinstall_libraries('formattable')
+
+df <- data.frame(
+  id = 1:10,
+  name = c("Bob", "Ashley", "James", "David", "Jenny", 
+    "Hans", "Leo", "John", "Emily", "Lee"), 
+  age = c(28, 27, 30, 28, 29, 29, 27, 27, 31, 30),
+  grade = c("C", "A", "A", "C", "B", "B", "B", "A", "C", "C"),
+  test1_score = c(8.9, 9.5, 9.6, 8.9, 9.1, 9.3, 9.3, 9.9, 8.5, 8.6),
+  test2_score = c(9.1, 9.1, 9.2, 9.1, 8.9, 8.5, 9.2, 9.3, 9.1, 8.8),
+  final_score = c(9, 9.3, 9.4, 9, 9, 8.9, 9.25, 9.6, 8.8, 8.7),
+  registered = c(TRUE, FALSE, TRUE, FALSE, TRUE, TRUE, TRUE, FALSE, FALSE, FALSE),
+  stringsAsFactors = FALSE)
+```
+ 
+```{r,results='asis',echo=FALSE,message=FALSE}
+formattable(df, list(
+  # bootstrap glyphicons
+  grade = formatter("span", 
+    style = x ~ style(color = switches(x, A="darkgreen",B="orange",C="darkred")), 
+    x ~ lapply(x, function(i) 
+      htmltools::tagList(htmltools::tag("i", list(class=paste0("glyphicon glyphicon-", 
+        switch(i, A="star",B="ok",C="remove")))), i))),
+  # bar
+  test1_score = formatter("span", 
+    style = x ~ style(color = "white", background = "green", 
+      "padding-left" = sprintf("%.0fpx", 4 + 76 * (x-min(x))/(max(x) - min(x))),
+      "padding-right" = "4px",
+      "border-radius" = "4px")),
+  # bar
+  test2_score = formatter("span", 
+    style = x ~ style(color = "white", background = "green", 
+      "padding-right" = sprintf("%.0fpx", 4 + 76 * (x-min(x))/(max(x) - min(x))),
+      "padding-left" = "4px",
+      "border-radius" = "4px")),
+  # gradient
+  final_score = formatter("span", 
+    style = x ~ style(display = "block",
+      background = rgb(0.3, 0, 1 - 0.8 * rank(-x) / length(x)),
+      color = "white", "padding-right" = "5px", "border-radius" = "4px")),
+  # text transform
+  registered = x ~ ifelse(x, "yes", "no")),
+  align = c("r","l","r","c","r","l","r","c"))
+```
