@@ -1,5 +1,5 @@
-#' @name   convert_datatable_StringFactor
-#' @title  Convert data.table character columns to factor columns
+#' @name   convert_datatable_FactorString
+#' @title  Convert data.table factor columns to string columns
 #' @author Gene Leynes
 #' 
 #' @param dat	A data.table
@@ -8,7 +8,7 @@
 #' 				converted.
 #'
 #' @description
-#' 		Shortcut to convert data.table columns from string to factor.
+#' 		Shortcut to convert data.table columns from factor to string.
 #'
 #' @details
 #'      Returns the data.table invisibly because data.tables are modified in 
@@ -21,29 +21,27 @@
 #' 		require(geneorama)
 #' 		## Create examples
 #' 		dt <- as.data.table(OrchardSprays)
-#' 		dt[ , treatment := as.character(treatment)]
-#' 		dtchar <- copy(dt)
-#' 		dtchar[ , rowpos := as.character(rowpos)]
-#' 		dtchar[ , colpos := as.character(colpos)]
+#' 		dt[ , rowpos := as.factor(rowpos)]
+#' 		dt[ , colpos := as.factor(colpos)]
 #' 		str(dt)
-#' 		str(dtchar)
+#' 		dt2 <- copy(dt)
 #' 		
 #' 		## No columns specified
-#' 		convert_datatable_StringFactor(dt)
+#' 		convert_datatable_FactorString(dt)
 #' 		str(dt)
 #' 		## Specify column by position
-#' 		convert_datatable_StringFactor(dtchar, cols=2)
-#' 		str(dtchar)
-#' 		convert_datatable_StringFactor(dtchar, cols="colpos")
-#' 		str(dtchar)
+#' 		convert_datatable_FactorString(dt2, cols=2)
+#' 		str(dt2)
+#' 		convert_datatable_FactorString(dt2, cols="colpos")
+#' 		str(dt2)
 #' 	
 
 
 
-convert_datatable_StringFactor <- function(dat, cols=NULL){
+convert_datatable_FactorString <- function(dat, cols=NULL){
 	## Identify target columns, if not specified
 	if(is.null(cols)){
-		cols <- which(sapply(dat, class) == "character")
+		cols <- which(sapply(dat, class) == "factor")
 	}
 	## To avoid warning about numerical efficiency
 	if(is.numeric(cols)){
@@ -51,7 +49,7 @@ convert_datatable_StringFactor <- function(dat, cols=NULL){
 	}
 	## Convert columns
 	for(col in cols){
-		set(dat, j=col, value=as.factor(dat[[col]]))
+		set(dat, j=col, value=as.character(dat[[col]]))
 	}
 	invisible(dat)
 }
