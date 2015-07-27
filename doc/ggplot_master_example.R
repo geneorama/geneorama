@@ -78,6 +78,7 @@ ggplot(data = dm[value>.53 | value < .47,
         size = mean_mag, 
         colour = loc) +
     geom_line()  +
+	expand_limits(y=0) +
     xlab("My Custom X Label") +
     ylab("My Custom Y Label") +
     theme(plot.title = element_text(size = 20)) +
