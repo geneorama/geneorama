@@ -2,12 +2,15 @@
 #' @title 
 #' @author Gene Leynes
 #'
-#' @param 
+#' @param param1   description of param1...
+#' @param param2   description of param2...
 #'
 #' @description
 #' 		A function that ...
+#'
 #' @details
 #' 		some details are...
+#'
 #' @note
 #' 		Assumes blah blah blah
 #'
