@@ -1,0 +1,52 @@
+```{r}
+geneorama::loadinstall_libraries("stringi")
+# devtools::install_github("rich-iannone/DiagrammeR")
+geneorama::loadinstall_libraries("DiagrammeR")
+
+
+## Not run: 
+# Create a graph and then view it in the RStudio Viewer
+nodes <-
+  create_nodes(nodes = LETTERS,
+               label = TRUE,
+               type = "letter",
+               shape = sample(c("circle", "square"),
+                              length(LETTERS),
+                              replace = TRUE),
+               fillcolor = sample(c("aqua", "orange",
+                                    "pink", "lightgreen",
+                                    "black", "yellow"),
+                                  length(LETTERS),
+                                  replace = TRUE))
+
+edges <-
+  create_edges(from = sample(LETTERS, replace = TRUE),
+               to = sample(LETTERS, replace = TRUE),
+               rel = "letter_to_letter")
+
+
+graph <-
+  create_graph(nodes_df = nodes,
+               edges_df = edges,
+               graph_attrs = "layout = twopi",
+               node_attrs = c("fontname = Helvetica",
+                              "style = filled"),
+               edge_attrs = c("color = gray20",
+                              "arrowsize = 0.5"))
+```
+
+```{r}
+# Render the graph using Graphviz
+## Only works in script
+render_graph(graph)
+
+# Render the graph using VivaGraph
+render_graph(graph, output = "vivagraph")
+
+# Render the graph using visNetwork
+render_graph(graph, output = "visNetwork")
+render_graph(graph)
+
+## End(Not run)
+```
+
