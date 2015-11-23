@@ -82,3 +82,44 @@ if(FALSE){
 	rownames(MySummary)[MySummary$rNA == 1]
 }
 
+
+if(FALSE){
+	## DATA TABLE VERSION
+	## SLOWER!
+	NAsummary <-function(dat, include_nan=FALSE){
+		# browser()}
+		require(data.table)
+		ret <- data.table(column=colnames(dat),
+						  Count =nrow(dat))
+		ret <- ret[ , nNA := NA_real_][]
+		for(j in 1:nrow(ret)){
+			set(x = ret,
+				i = j,
+				j = "nNA", 
+				value = sum(is.na(dat[ ,j, with=FALSE])))
+		}
+		ret <- ret[ , rNA := trunc(nNA / Count * 10000) / 10000][]
+		
+		if(include_nan){
+			ret[ , nNan := NA_real_]
+			for(j in 1:nrow(ret)){
+				set(ret, 
+					i = j, 
+					j = "nNan", 
+					value=sum(is.nan(unlist(dat[ ,j, with=FALSE]))))
+			}
+			ret <- ret[ , rNan := trunc(nNan / Count * 10000) / 10000][]
+		}
+		
+		ret <- ret[ , nUnique := NA_real_][]
+		for(j in 1:nrow(ret)){
+			row_count <- eval(substitute(nrow(dat[ ,.N, X]), 
+										 list(X=as.symbol(colnames(dat)[j]))))
+			set(ret, i = j, j = "nUnique", value=row_count)
+		}
+		ret <- ret[ , rUnique := trunc(nUnique / Count * 10000) / 10000][]
+		
+		return(ret)
+	}
+}
+
