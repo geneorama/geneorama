@@ -9,7 +9,9 @@ json_to_datatable <- function(lst){
                                      length = length(lst))
         }
         for(curname in names(cur)){
-            ret[[curname]][i] <- cur[[curname]]
+            if(length(cur[[curname]])!=0){
+                ret[[curname]][i] <- cur[[curname]]
+            }
         }
     }
     ret <- as.data.table(ret)
