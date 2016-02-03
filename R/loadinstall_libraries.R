@@ -7,6 +7,8 @@
 #'                            to install anything.
 #' @param myrepos             Repository to use. Default is 
 #'                            "http://cran.rstudio.com/"
+#' @param install_only        Boolean to indicate if the packages are only 
+#'                            to be installed, instead of installed an loaded.
 #'
 #' @description
 #' 		Call this function to load a vector of required packages from
@@ -36,7 +38,8 @@
 
 
 loadinstall_libraries <- function(required_packages = c(),
-								  myrepos = "http://cran.rstudio.com/"){
+								  myrepos = "http://cran.rstudio.com/",
+								  install_only = FALSE){
 	
 	## Set repository if my repos is not null
 	if(!is.null(myrepos)){
@@ -63,20 +66,22 @@ loadinstall_libraries <- function(required_packages = c(),
 		}
 	}
 	
-	## load packages
-	## make a function
-	cat('\nLoading required libraries:\n')
-	
-	for(pkg in required_packages){
-		## Check that the package is not missing, display a warning if it is
-		if( pkg %in% installed_pacakges ){
-			cat('Attaching:', pkg, '\n')
-			library(pkg, character.only=TRUE, quietly=TRUE)
-		} else {
-			cat(rep('*', 80), '\n', sep='')
-			cat('This package could not be loaded because it is not installed:',
-				pkg, '!\n')
-			cat(rep('*', 80), '\n', sep='')
+	if(!install_only){
+		## load packages
+		## make a function
+		cat('\nLoading required libraries:\n')
+		
+		for(pkg in required_packages){
+			## Check that the package is not missing, display a warning if it is
+			if( pkg %in% installed_pacakges ){
+				cat('Attaching:', pkg, '\n')
+				library(pkg, character.only=TRUE, quietly=TRUE)
+			} else {
+				cat(rep('*', 80), '\n', sep='')
+				cat('This package could not be loaded / installed:',
+					pkg, '!\n')
+				cat(rep('*', 80), '\n', sep='')
+			}
 		}
 	}
 }

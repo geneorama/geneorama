@@ -1,8 +1,8 @@
 Package: geneorama
 Type: Package
 Title: Gene's collection of miscellaneous functions
-Version: 1.4.1
-Date: 2012-01-30
+Version: 1.5.0
+Date: 2016-02-03
 Author: Gene Leynes
 Maintainer: Gene Leynes <rpackage@geneorama.com>
 Depends:
