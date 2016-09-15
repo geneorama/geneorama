@@ -1,0 +1,271 @@
+
+
+# DISCLAMER:
+These are recent notes that are not intended to be comprehensive.
+
+```{r, message=FALSE}
+library(geneorama)
+```
+
+## CLIPBOARD ACCESS FOR LINUX... FINALLY
+```{r, eval=FALSE}
+
+## Install xclip first:
+"$ sudo apt-get install xclip"
+
+# Install from CRAN
+install.packages("clipr")
+
+# Or try the development version
+devtools::install_github("mdlincoln/clipr")
+
+# library("clipr")
+cb <- clipr::read_clip()
+
+cb <- write_clip(c("Text", "for", "clipboard"))
+cb <- write_clip(c("Text", "for", "clipboard"), breaks = ", ")
+
+## Future use in geneorama?
+## Nice fread example
+con <- pipe("xclip -o -selection clipboard")
+content <- scan(con, what = character(), sep = "\n", blank.lines.skip = FALSE, quiet = TRUE)
+fread(paste(content, collapse = "\n"))
+close(con)
+```
+
+## Record your screen in Linux
+This isn't R, but it's amazing.  Use this code to record your screen in Linux.  Source: http://www.commandlinefu.com/commands/browse
+
+```{r, eval=FALSE}
+"ffmpeg -f x11grab -r 25 -s 800x600 -i :0.0 /tmp/outputFile.mpg"
+```
+
+## Add alpha to a plot & Smooth Scatter example
+```{r}
+
+# source:
+# http://menugget.blogspot.com/2012/04/adding-transparent-image-layer-to-plot.html
+
+add_alpha <- function(COLORS, ALPHA){
+    if(missing(ALPHA)) stop("provide a value for alpha between 0 and 1")
+    RGB <- col2rgb(COLORS, alpha=TRUE)
+    RGB[4,] <- round(RGB[4,]*ALPHA)
+    NEW.COLORS <- rgb(RGB[1,], RGB[2,], RGB[3,], RGB[4,], maxColorValue = 255)
+    return(NEW.COLORS)
+}
+cols <- c('transparent','blue','yellow','red','darkred')
+colramp <- colorRampPalette(add_alpha(cols, .5), alpha=T)
+df <- data.table(x=rnorm(100), y=rnorm(100))
+df[ , plot(x,y)]
+df[ , smoothScatter(x,y,colramp = colramp, add=TRUE,
+                        nbin = c(300, 300), bandwidth = c(.2, .2),
+                        transformation=function(x) sqrt(x))]
+```
+
+## Get google map and plot it
+
+```{r}
+library(ggmap)
+
+set_project_dir("geneorama")
+infile <- "doc/ggmap_chicago.Rds"
+
+## LOAD DATA
+## Also, clean up variable names, and convert dates
+if(!file.exists(infile)){
+	mapdata <- get_map("Chicago, Illinois", zoom=10)
+	saveRDS(mapdata, infile)
+}
+mapdata <- readRDS(infile)
+
+ggmap(mapdata)
+str(mapdata)
+# saveRDS(mapdata, "ggmap_data.Rds")
+```
+
+## Make a color palette
+
+```{r}
+library()
+pal <- leaflet::colorQuantile("Greens", NULL, n = 6)
+pal <- leaflet::colorNumeric('PuBuGn', 10)
+
+df <- data.table(x=rnorm(1000), y=rnorm(1000))
+vals <- df[,1/(3+(x+y)^2)]
+pal <- leaflet::colorNumeric('PuBuGn', range(vals))
+df[ , plot(y~x, pch=19, col=pal(vals), cex=5)]
+```
+
+## Display color palettes (color blind friendly)
+```{r}
+RColorBrewer::display.brewer.all(colorblindFriendly=TRUE)
+RColorBrewer::brewer.pal.info
+
+```
+
+## LEAFLET EXAMPLE FROM GIS STACK EXCHANGE
+
+http://gis.stackexchange.com/questions/168886/r-how-to-build-heatmap-with-the-leaflet-package/203623#203623
+
+Modified to use RCurl and adding elements from example from food-inspections-model (recent branch)
+
+```{r}
+set_project_dir("geneorama")
+
+## INITIALIZE
+loadinstall_libraries(c("leaflet", "data.table", "sp", "rgdal", "KernSmooth", "RCurl"))
+# library("maptools")
+
+inurl <- "https://data.cityofchicago.org/api/views/22s8-eq8h/rows.csv?accessType=DOWNLOAD"
+infile <- "doc/mvthefts.Rds"
+
+## LOAD DATA
+## Also, clean up variable names, and convert dates
+if(!file.exists(infile)){
+    # download.file(url = inurl, destfile = infile)
+	dat <- fread(RCurl::httpGET(inurl)[1])
+	setnames(dat, tolower(colnames(dat)))
+	setnames(dat, gsub(" ", "_", colnames(dat)))
+	dat <- dat[!is.na(longitude)]
+	dat[ , date := as.IDate(date, "%m/%d/%Y")]
+	saveRDS(dat, infile)
+}
+dat <- readRDS(infile)
+
+## MAKE CONTOUR LINES
+## Note, bandwidth choice is based on MASS::bandwidth.nrd()
+kde <- bkde2D(dat[ , list(longitude, latitude)],
+              bandwidth=c(.0045, .0068), gridsize = c(100,100))
+CL <- contourLines(kde$x1 , kde$x2 , kde$fhat)
+
+## EXTRACT CONTOUR LINE LEVELS
+LEVS <- as.factor(sapply(CL, `[[`, "level"))
+NLEV <- length(levels(LEVS))
+
+## CONVERT CONTOUR LINES TO POLYGONS
+pgons <- lapply(1:length(CL), function(i)
+    Polygons(list(Polygon(cbind(CL[[i]]$x, CL[[i]]$y))), ID=i))
+spgons = SpatialPolygons(pgons)
+
+## MAPBOX INFO
+MAPBOX_STYLE_TEMPLATE <- paste0("https://api.mapbox.com/styles/v1/coc375492/",
+                                "cirqd7mgf001ygcnombg4jtb4/tiles/256/{z}/{x}/{y}",
+                                "?access_token=pk.eyJ1IjoiY29jMzc1NDkyIiwiYSI6ImN",
+                                "pcnBldzVqMTBmc3J0N25rZTIxZ3ludDIifQ.DgJIcLDjC1h9MtT8CaJ-pQ")
+mb_attribution <- paste("© <a href='https://www.mapbox.com/about/maps/'>Mapbox</a> ",
+                        "© <a href='http://www.openstreetmap.org/about/'>OpenStreetMap</a>")
+
+
+## Leaflet map with points and polygons
+## Note, this shows some problems with the KDE, in my opinion...
+## For example there seems to be a hot spot at the intersection of Mayfield and
+## Fillmore, but it's not getting picked up.  Maybe a smaller bw is a good idea?
+
+dat[ , LABEL := paste0(date, " | ", location_description, " | arrest:", arrest)]
+
+```
+```{r}
+# pal <- leaflet::colorQuantile("Greens", NULL, n = NLEV)
+pal <- leaflet::colorFactor("Greens", NULL, levels = NLEV)
+pal <- leaflet::colorFactor("Greens", levels = -NLEV:NLEV)
+# pal <- leaflet::colorNumeric('PuBuGn', -5:NLEV)
+# pal <- leaflet::colorNumeric('PuOr', NLEV:-1)
+leaflet(spgons) %>% 
+	# addProviderTiles("CartoDB.Positron") %>%
+	addTiles(urlTemplate = MAPBOX_STYLE_TEMPLATE, attribution = mb_attribution) 	%>%
+	# addPolygons(color = heat.colors(NLEV, NULL)[LEVS], weight=1, fillOpacity=.25) %>%
+	addPolygons(color = pal(as.numeric(LEVS)), weight=1, fillOpacity=.25) %>%
+    addCircles(lng = ~longitude, lat = ~latitude, weight = 3, popup = ~LABEL,
+    		   data = dat, radius = .5, opacity = .4, 
+    		   col = ifelse(dat$arrest=="true", "yellow", "red")) %>% 
+	addLegend(pal = pal, 
+              values = LEVS, 
+              position = "bottomright", 
+              title = "Crime Intensity") %>% 
+	addLegend(colors = c("yellow", "red"),
+              labels = c("true", "false"), 
+              position = "bottomleft", 
+              title = "Arrest")
+
+```
+
+
+
+
+```{r}
+## Uncomment to save results
+# library(maptools)
+# spdf <- SpatialPolygonsDataFrame(spgons, as.data.frame(LEVS), match.ID = F)
+# dircreate("mapdata")
+# writePolyShape(spdf, "mapdata/any_name")
+```
+
+
+
+## Stat density
+
+```{r}
+geneorama::loadinstall_libraries(c("geneorama", "ggmap", "ggplot2"))
+
+set_project_dir("geneorama")
+infile <- "doc/ggmap_chicago.Rds"
+
+## LOAD MAP DATA
+## Also, clean up variable names, and convert dates
+if(!file.exists(infile)){
+	mapdata <- get_map("Chicago, Illinois", zoom=10)
+	saveRDS(mapdata, infile)
+}
+mapdata <- readRDS(infile)
+
+## LOAD CRIME DATA
+inurl <- "https://data.cityofchicago.org/api/views/22s8-eq8h/rows.csv?accessType=DOWNLOAD"
+infile <- "doc/mvthefts.Rds"
+
+## LOAD DATA
+## Also, clean up variable names, and convert dates
+if(!file.exists(infile)){
+    # download.file(url = inurl, destfile = infile)
+	dat <- fread(RCurl::httpGET(inurl)[1])
+	setnames(dat, tolower(colnames(dat)))
+	setnames(dat, gsub(" ", "_", colnames(dat)))
+	dat <- dat[!is.na(longitude)]
+	dat[ , date := as.IDate(date, "%m/%d/%Y")]
+	saveRDS(dat, infile)
+}
+dat <- readRDS(infile)
+
+## Crime points
+cpts <- dat[,list(lon=longitude, lat=latitude)]
+
+## Density plot (built into ggplot)
+base_plot <- ggmap(mapdata)
+base_plot + stat_density2d(data=cpts, aes(group=1), color = 4)
+
+## Contour lines - Build kernel density
+rng <- unname(unlist(cpts[ , list(range(lon), range(lat))]))
+cdens <- MASS::kde2d(x = cpts$lon, y = cpts$lat, h = .03, n = 100, lims = rng)
+cdens_dt <- data.table(z=melt(cdens$z))
+setnames(cdens_dt, c("x", "y", "z"))
+cdens_dt[ , x:=cdens$x[cdens_dt$x]]
+cdens_dt[ , y:=cdens$y[cdens_dt$y]]
+cdens_dt
+
+## Contour lines - Plot without base layer (proof of concept)
+ggplot(data = cdens_dt, aes(x,y,z=z)) + stat_contour(aes(x,y,z=z))
+## Contour lines
+base_plot + stat_contour(data = cdens_dt, aes(x,y,z=z, group=1))
+
+base_plot + stat_contour(data = cdens_dt, aes(x,y,z=z, group=1)) +
+    annotate("text", x = -87.825, y = 41.73, label=paste0("Chicago"), size=8)
+
+base_plot + stat_contour(data = cdens_dt, 
+                         aes(x,y,z=z, group=1, colour = ..level..), size=1)
+
+base_plot + 
+    stat_contour(data = cdens_dt, geom="polygon", alpha=.2,
+                 aes(x,y,z=z, group=1, fill = ..level..)) +
+    annotate("text", x = -87.825, y = 41.73,
+             label=paste0("Burglary density\nin 2013"), size=7)
+```
+
