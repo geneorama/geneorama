@@ -4,26 +4,25 @@
 ##==============================================================================
 
 ##------------------------------------------------------------------------------
-## INITIALIZE
-##------------------------------------------------------------------------------
-# ls()
-# rm(list=ls())
-library(geneorama)
-
-
-##------------------------------------------------------------------------------
 ## Construct URL
 ## Download content
 ## Extract as text
 ##------------------------------------------------------------------------------
 
-get_content <- function(base_url, LIMIT = 25000){
+get_content <- function(base_url, LIMIT = 25000, param=NULL){
     result <- list()
     i <- 0
     while(length(result)==0 || length(result[[length(result)]]) >= LIMIT ){
         i <- i + 1
         cat("httr get request number", i, "\n")
-        url <- paste0(base_url, "?$LIMIT=", LIMIT, "&$OFFSET=", (i - 1) * LIMIT)
+        url <- paste0(base_url,
+                      "?$LIMIT=",
+                      sprintf("%i", LIMIT),
+                      "&$OFFSET=",
+                      sprintf("%i", (i - 1) * LIMIT))
+        if(!is.null(param)){
+            url <- paste0(url, param)
+        }
         result[[i]] <- httr::GET(url)
         result[[i]] <- httr::content(result[[i]])
     }
@@ -104,20 +103,43 @@ convert_types <- function(dt, column_info){
     return(dt)
 }
 
-##------------------------------------------------------------------------------
-## RUN EXAMPLE
-##------------------------------------------------------------------------------
-sanitation_url <- "https://data.cityofchicago.org/resource/me59-5fac.json"
+if(FALSE){
+    ##------------------------------------------------------------------------------
+    ## INITIALIZE
+    ##------------------------------------------------------------------------------
+    ls()
+    # rm(list=ls())
+    library(geneorama)
+    
+    ##------------------------------------------------------------------------------
+    ## RUN EXAMPLE
+    ##------------------------------------------------------------------------------
+    
+    fourbyfour <- "me59-5fac" # sanitation complaints
+    fourbyfour <- "r5kz-chrr" # business
+    fourbyfour <- "22u3-xenr" # building violations
+    fourbyfour <- "4ijn-s7e5" # food inspections
+    fourbyfour <- "ijzp-q8t2" # crime
+    fourbyfour <- "6zsd-86xi" # crime (version 2 of the API)
+    
+    ## GET COLUMN INFO
+    base_url <- paste0("https://data.cityofchicago.org/resource/", fourbyfour, ".json")
+    column_info <- get_metadata(base_url)
+    column_info <- column_info[which(not_subColumns)]  ## No nested fields
+    column_info
+    
+    ## DOWNLOAD JSON
+    dat_json <- get_content(base_url = base_url)
+    # dat_json <- get_content(base_url = base_url, param = "&$where=date>'2014-01-01'")
+    
+    ## CONVERT FROM JSON
+    dat <- json_to_datatable(rawdata = dat_json, column_info = column_info)
+    dat <- convert_types(dat, column_info)
+    dat
+    
+    str(dat)
+    
+    saveRDS(dat, "foodinspections.Rds")
+}
 
-system.time(dat_json <- get_content(base_url = sanitation_url))
-system.time(dat <- json_to_datatable(rawdata = dat_json, column_info = column_info))
-system.time(column_info <- get_metadata(sanitation_url))
-column_info <- column_info[which(not_subColumns)]  ## No nested fields
-column_info
-system.time(dat <- convert_types(dat, column_info))
-dat
-
-system.time(rs <- RSocrata::read.socrata(gsub(".json",".csv",sanitation_url)))
-
-str(dat)
 
