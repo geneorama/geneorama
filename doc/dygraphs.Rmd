@@ -1,0 +1,53 @@
+
+
+## Dygraphs
+
+Full examples and documentation here:
+https://rstudio.github.io/dygraphs/index.html
+
+
+## Load library
+
+**Optional** code to install from github and install
+```{r, eval=FALSE}
+devtools::install_github("rstudio/dygraphs")
+library(dygraphs)
+```
+
+Load Library using geneorama, this uses the CRAN version.
+
+```{r, results="hide"}
+geneorama::loadinstall_libraries("dygraphs")
+```
+
+
+## Very basic line example using defaults
+
+```{r}
+lungDeaths <- cbind(mdeaths, fdeaths)
+dygraph(lungDeaths)
+```
+
+
+## Stacked bar example
+
+```{r}
+dygraph(lungDeaths) %>%
+    dySeries("mdeaths", label = "Male") %>%
+    dySeries("fdeaths", label = "Female") %>%
+    dyOptions(stackedGraph = TRUE) %>%
+    dyRangeSelector(height = 20)
+```
+
+
+## Example of making plot manually
+
+```{r}
+p <- dygraph(lungDeaths)
+p <- dySeries(p, "mdeaths", label = "Male")
+p <- dySeries(p, "fdeaths", label = "Female")
+p <- dyOptions(p, stackedGraph = TRUE)
+p <- dyRangeSelector(p, height = 20)
+p
+```
+
