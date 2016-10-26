@@ -1,7 +1,7 @@
 Package: geneorama
 Type: Package
 Title: Gene's collection of miscellaneous functions
-Version: 1.5.0
+Version: 1.5.1
 Date: 2016-02-03
 Author: Gene Leynes
 Maintainer: Gene Leynes <rpackage@geneorama.com>
@@ -13,3 +13,4 @@ Description: This is an assortment of convenience utilities and documentation of
     lessons learned (mostly the hard way) in R.  See FAQ.R in the doc
     folder for "lessons learned".
 License: LGPL (>= 2.0, < 3) | Mozilla Public License + file LICENSE
+RoxygenNote: 5.0.1
