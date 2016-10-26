@@ -16,6 +16,11 @@
 #' 	\code{\link{cat}}, \code{\link{readLines}}, \code{\link{file}}
 #'
 #'
+#' @examples
+#' 		## NOT RUN:
+#'		# files <- list.files(".", recursive = T, full.names = T)
+#'		# sapply(files, convert_crlf)
+#'
 
 
 convert_crlf <- function(infile){
