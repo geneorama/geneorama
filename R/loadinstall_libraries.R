@@ -38,12 +38,12 @@
 
 
 loadinstall_libraries <- function(required_packages = c(),
-								  myrepos = "http://cran.rstudio.com/",
+								  myrepos = options()$repos,
 								  install_only = FALSE){
 	
 	## Set repository if my repos is not null
-	if(!is.null(myrepos)){
-		options(repos = c(CRAN = myrepos))
+	if(is.null(myrepos) | myrepos["CRAN"]=="@CRAN@"){
+		options(repos = c(CRAN = "https://cran.rstudio.com/"))
 	}
 	
 	## Packages installed on this computer
