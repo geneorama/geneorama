@@ -40,7 +40,7 @@
 #'   ...
 #' }
 #' @source \url{https://data.cityofchicago.org/Facilities-Geographic-Boundaries/Boundaries-Wards-2015-/sp34-6z76}
-"chi_wards"
+"chi_wards_2015"
 
 
 

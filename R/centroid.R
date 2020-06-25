@@ -1,11 +1,11 @@
-## Source for functions:
-## https://gis.stackexchange.com/a/265475/78424
-
 #' find the center of mass / furthest away from any boundary
 #' 
 #' Takes as input a spatial polygon
 #' @param pol One or more polygons as input
 #' @param ultimate optional Boolean, TRUE = find polygon furthest away from centroid. False = ordinary centroid
+#' 
+#' ## Source for functions:
+#' ## https://gis.stackexchange.com/a/265475/78424
 
 require(rgeos)
 require(sp)
