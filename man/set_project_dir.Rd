@@ -31,4 +31,3 @@ Used within Knitr (Rmd) files when the report file is not at the top
 \author{
 Gene Leynes and Scott Rodgers
 }
-

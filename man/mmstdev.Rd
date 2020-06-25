@@ -34,10 +34,9 @@ Why would you want to do this?  You wouldn't.  You should use `sd`.
 
 
 }
-\author{
-Gene Leynes
-}
 \seealso{
 \code{\link[base]{sd}} Standard deviation.
 }
-
+\author{
+Gene Leynes
+}

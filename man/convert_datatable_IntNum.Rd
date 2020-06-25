@@ -22,11 +22,10 @@ The data.table is returned invisibly if needed.
 		entire data.table is returned, but only the columns in "cols" are 
 		searched.  A warning is produced if no columns are integer.
 }
-\author{
-Gene Leynes
-}
 \seealso{
 \code{\link[data.table]{data.table}}
 	\code{\link[data.table]{set}}
 }
-
+\author{
+Gene Leynes
+}

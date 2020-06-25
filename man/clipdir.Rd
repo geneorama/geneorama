@@ -44,10 +44,9 @@ Only works in Windows because of clipboard.
 	}
 
 }
-\author{
-Gene Leynes
-}
 \seealso{
 \code{\link{clipboard}},
 }
-
+\author{
+Gene Leynes
+}

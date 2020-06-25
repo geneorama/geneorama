@@ -37,6 +37,7 @@ Adds a slightly	more professional look to plots, and makes them easier to
 	    \url{http://r-project.markmail.org/thread/b4szqhorzynnzfhs} or in
 	    examples.
 }
+
 \examples{
 
      require(geneorama)
@@ -51,12 +52,11 @@ Adds a slightly	more professional look to plots, and makes them easier to
      points(y~x, data=df, panel.first=bgfun())
 
 }
-\author{
-Gene Leynes
-}
 \seealso{
 \code{\link{addbg}},
 	\code{\link{plot100colors}} to see color examples
 	\code{\link[ggplot2]{ggplot}} Way better
 }
-
+\author{
+Gene Leynes
+}

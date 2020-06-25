@@ -27,4 +27,3 @@ Simple shortcut to make numbers into text with commas and some
 \author{
 Gene Leynes
 }
-

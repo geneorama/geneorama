@@ -4,8 +4,11 @@
 \alias{dependencylist}
 \title{List all the dependent packages of the currently attached packages}
 \usage{
-dependencylist(standard_packages = c("stats", "graphics", "grDevices",
-  "utils", "datasets", "methods", "base"), exclude_standard = TRUE)
+dependencylist(
+  standard_packages = c("stats", "graphics", "grDevices", "utils", "datasets",
+    "methods", "base"),
+  exclude_standard = TRUE
+)
 }
 \arguments{
 \item{standard_packages}{Packages considered by the user to be "standard".
@@ -26,11 +29,10 @@ This function could change in the future.
 		dependencylist()
 
 }
-\author{
-Gene Leynes
-}
 \seealso{
 \code{\link[base]{loadedNamespaces}}
 		\code{\link[utils]{installed.packages}}
 }
-
+\author{
+Gene Leynes
+}

@@ -47,4 +47,3 @@ More details about week rounding issue (mentioned in details) here:
 \author{
 Gene Leynes
 }
-

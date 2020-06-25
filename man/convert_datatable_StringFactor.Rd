@@ -41,10 +41,9 @@ Returns the data.table invisibly because data.tables are modified in
 		str(dtchar)
 	
 }
-\author{
-Gene Leynes
-}
 \seealso{
 \code{\link[data.table]{data.table}}
 }
-
+\author{
+Gene Leynes
+}

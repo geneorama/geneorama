@@ -15,11 +15,10 @@ Creates a global variable called ticTime.
      
 		System.time is preferred (see see also).
 }
-\author{
-Gene Leynes
-}
 \seealso{
 \code{\link{toc}}
 	\code{\link[base]{system.time}}
 }
-
+\author{
+Gene Leynes
+}

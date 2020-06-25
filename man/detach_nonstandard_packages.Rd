@@ -5,10 +5,12 @@
 \title{detach_nonstandard_packages - Detach any non-standard packages from
 the search path}
 \usage{
-detach_nonstandard_packages(standard_packages = c("stats", "graphics",
-  "grDevices", "utils", "datasets", "methods", "base", "tools", "Rcpp"),
+detach_nonstandard_packages(
+  standard_packages = c("stats", "graphics", "grDevices", "utils", "datasets",
+    "methods", "base", "tools", "Rcpp"),
   standard_namespaces = c("tools", "Rcpp", "data.table"),
-  detach_namespaces = FALSE)
+  detach_namespaces = FALSE
+)
 }
 \arguments{
 \item{standard_packages}{Vector of packages considered to be "standard" and
@@ -58,11 +60,10 @@ To see the full list of attached namespaces and pacakges run
 
 
 }
-\author{
-Gene Leynes and Scott Rodgers
-}
 \seealso{
 \code{\link[utils]{sessionInfo}}
 		\code{\link[base]{loadedNamespaces}}
 }
-
+\author{
+Gene Leynes and Scott Rodgers
+}

@@ -44,10 +44,9 @@ Assumes that the option is european, there is a constant risk-free
 
 
 }
-\author{
-Gene Leynes
-}
 \seealso{
 \code{\link{bs}}
 }
-
+\author{
+Gene Leynes
+}

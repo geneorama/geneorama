@@ -26,10 +26,9 @@ The lll function was inspired by the ll function in 'gtools', but
 lll()
 
 }
-\author{
-Gene Leynes
-}
 \seealso{
 \code{\link{ll}} (in gdata)
 }
-
+\author{
+Gene Leynes
+}

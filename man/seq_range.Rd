@@ -33,10 +33,9 @@ seq_range(rpois(5, 8), length.out=4)
 
 
 }
-\author{
-Gene Leynes
-}
 \seealso{
 \code{\link[base]{seq}} Underlying function
 }
-
+\author{
+Gene Leynes
+}

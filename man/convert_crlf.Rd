@@ -23,10 +23,9 @@ LF is Unix.  Note that writeChar, writeLines, and other options don't
 	# sapply(files, convert_crlf)
 
 }
-\author{
-Gene Leynes
-}
 \seealso{
 \code{\link{cat}}, \code{\link{readLines}}, \code{\link{file}}
 }
-
+\author{
+Gene Leynes
+}

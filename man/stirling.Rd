@@ -26,10 +26,9 @@ sqrt(2 * pi * x) * (x / exp(1)) ^ x
 
 
 }
-\author{
-Gene Leynes
-}
 \seealso{
 \code{\link[base]{factorial}} Factorials calculated exactly.
 }
-
+\author{
+Gene Leynes
+}

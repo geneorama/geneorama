@@ -20,4 +20,3 @@ Has some logic to avoid name clashes when opening two objects of the
 \author{
 Gene Leynes
 }
-

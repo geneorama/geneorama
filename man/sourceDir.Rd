@@ -22,10 +22,9 @@ Run "source" on all the file in a folder.
 \details{
 This came from the example in ?source
 }
-\author{
-Unknown
-}
 \seealso{
 \code{\link[base]{source}}
 }
-
+\author{
+Unknown
+}

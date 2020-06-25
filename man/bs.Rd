@@ -36,10 +36,9 @@ Assumes that the option is european, there is a constant risk-free
      Also assumes that there are no transaction costs and the market is
      frictionless.
 }
-\author{
-Gene Leynes
-}
 \seealso{
 \code{\link{bs_withdiv}},
 }
-
+\author{
+Gene Leynes
+}

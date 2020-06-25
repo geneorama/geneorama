@@ -4,8 +4,11 @@
 \alias{addbg}
 \title{Add an opaque background to a plot when plotting}
 \usage{
-addbg(color = heat.colors(40, alpha = 0.15)[30], linecolor = "grey75",
-  addgridlines = TRUE)
+addbg(
+  color = heat.colors(40, alpha = 0.15)[30],
+  linecolor = "grey75",
+  addgridlines = TRUE
+)
 }
 \arguments{
 \item{color}{Background color. The default is a yellow from '
@@ -40,12 +43,11 @@ The background and gridlines can be  slightly
      addbg()
 
 }
-\author{
-Gene Leynes
-}
 \seealso{
 \code{\link{bgfun}},
 	\code{\link{plot100colors}} to see color examples
 	\code{\link[ggplot2]{ggplot}} Way better
 }
-
+\author{
+Gene Leynes
+}

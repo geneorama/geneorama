@@ -4,7 +4,17 @@
 \alias{clipper}
 \title{Put items from R onto your cliboard (Windows)}
 \usage{
-clipper(x)
+clipper(
+  x,
+  quote = TRUE,
+  sep = "\\t",
+  eol = "\\n",
+  na = "",
+  dec = ".",
+  row.names = FALSE,
+  col.names = TRUE,
+  qmethod = c("escape", "double")
+)
 }
 \arguments{
 \item{x}{Object to be written to clipboard.}
@@ -27,11 +37,13 @@ Only works in Windows. Only works for simple objects, like 0, 1, and 2
 	clipper(matrix(rnorm(100),10,10))
 	}
 
-}
-\author{
-Gene Leynes
+New version based on:
+https://stackoverflow.com/questions/10959521/how-to-write-to-clipboard-on-ubuntu-linux-in-r
+
 }
 \seealso{
 \code{\link{clipboard}},
 }
-
+\author{
+Gene Leynes
+}

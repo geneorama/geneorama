@@ -39,10 +39,9 @@ Returns the data.table invisibly because data.tables are modified in
 		str(dt2)
 	
 }
-\author{
-Gene Leynes
-}
 \seealso{
 \code{\link[data.table]{data.table}}
 }
-
+\author{
+Gene Leynes
+}

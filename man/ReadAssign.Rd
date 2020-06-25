@@ -96,4 +96,3 @@ This function will open a serialized R object and assign the object to the
 \author{
 Gene Leynes and Scott Rodgers
 }
-

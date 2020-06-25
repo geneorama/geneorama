@@ -46,4 +46,3 @@ Can shift forward or backwards
 \author{
 Gene Leynes (originally dnlbrky \url{http://stackoverflow.com/users/1344789/dnlbrky})
 }
-

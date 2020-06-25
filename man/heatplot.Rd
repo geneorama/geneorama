@@ -4,8 +4,16 @@
 \alias{heatplot}
 \title{Make colorful scatter plots where the color show relative values of a third dimension}
 \usage{
-heatplot(x, y, z, bgcol = "#777044", coltype = "heat", ccex = 1.5,
-  circles = TRUE, ...)
+heatplot(
+  x,
+  y,
+  z,
+  bgcol = "#777044",
+  coltype = "heat",
+  ccex = 1.5,
+  circles = TRUE,
+  ...
+)
 }
 \arguments{
 \item{x}{vector for x position}
@@ -47,4 +55,3 @@ DT[ ,heatplot(x,y,z, circles=FALSE)]
 \author{
 Gene Leynes
 }
-

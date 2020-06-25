@@ -47,12 +47,11 @@ summary(lm(GNP~., nokey(dt_model)))$coef
 
 
 }
-\author{
-Gene Leynes
-}
 \seealso{
 \code{\link[data.table]{data.table}}
 	\code{\link[data.table]{setkey}}
 	\code{\link[data.table]{key}}
 }
-
+\author{
+Gene Leynes
+}

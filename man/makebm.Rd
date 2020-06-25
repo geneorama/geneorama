@@ -23,10 +23,9 @@ Creates a matrix simulating Brownian motion
 \details{
 The makegm function is preferred for things like pricing options.
 }
-\author{
-Gene Leynes
-}
 \seealso{
 \code{\link{makegm}},
 }
-
+\author{
+Gene Leynes
+}

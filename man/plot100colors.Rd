@@ -33,10 +33,9 @@ The first color is 1 (white), there are quite a few gradients of gray.
 
 
 }
-\author{
-Gene Leynes
-}
 \seealso{
 \code{\link[ggplot2]{ggplot}} For the underlying color function
 }
-
+\author{
+Gene Leynes
+}

@@ -45,4 +45,3 @@ For a data frame, data.table, or matrix this function creates a summary
 \author{
 Gene Leynes
 }
-

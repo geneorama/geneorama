@@ -4,8 +4,13 @@
 \alias{convert_datatable_StringDate}
 \title{Find and convert data.table columns from Strings to IDate}
 \usage{
-convert_datatable_StringDate(dat, cols, fmt = NULL, tz = "GMT",
-  newclass = c("POSIXct", "IDate", "ITime")[2])
+convert_datatable_StringDate(
+  dat,
+  cols,
+  fmt = NULL,
+  tz = "GMT",
+  newclass = c("POSIXct", "IDate", "ITime")[2]
+)
 }
 \arguments{
 \item{dat}{A data.table}
@@ -31,13 +36,12 @@ The data.table is returned invisibly if needed.
 		entire data.table is returned, but only the columns in "cols" are 
 		searched.  A warning is produced if no columns are character.
 }
-\author{
-Gene Leynes
-}
 \seealso{
 \code{\link[data.table]{data.table}}
 	\code{\link[data.table]{as.IDate}} 
 	\code{\link[data.table]{set}} 
 	\code{\link[base]{strptime}}
 }
-
+\author{
+Gene Leynes
+}

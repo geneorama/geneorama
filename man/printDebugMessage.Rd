@@ -23,4 +23,3 @@ some details are... comming soon.
 \author{
 Gene Leynes
 }
-

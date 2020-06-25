@@ -30,4 +30,3 @@ Also closes a plot window, so becareful.  At the commandline it writes
 \author{
 Gene Leynes
 }
-

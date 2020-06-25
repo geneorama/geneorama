@@ -4,8 +4,11 @@
 \alias{loadinstall_libraries}
 \title{Load / Install CRAN Packages}
 \usage{
-loadinstall_libraries(required_packages = c(), myrepos = options()$repos,
-  install_only = FALSE)
+loadinstall_libraries(
+  required_packages = c(),
+  myrepos = options()$repos,
+  install_only = FALSE
+)
 }
 \arguments{
 \item{required_packages}{Character vector of pacakges to load / install
@@ -44,4 +47,3 @@ lll()
 \author{
 Gene Leynes
 }
-

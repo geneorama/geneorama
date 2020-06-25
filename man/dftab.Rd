@@ -39,10 +39,9 @@ This function is useful when you want to see a total of a table result,
 
 		sapply(df, dftab)
 }
-\author{
-Gene Leynes
-}
 \seealso{
 \code{\link{table}}
 }
-
+\author{
+Gene Leynes
+}

@@ -4,7 +4,17 @@
 \alias{clipped}
 \title{Dump clipboard contents into R; especially from Excel (Windows)}
 \usage{
-clipped(lowercase = TRUE, removedot = TRUE)
+clipped(
+  header = TRUE,
+  sep = "\\t",
+  na.strings = c("", "NA"),
+  check.names = FALSE,
+  stringsAsFactors = F,
+  dec = ".",
+  as.data.table = TRUE,
+  remove.spaces = TRUE,
+  ...
+)
 }
 \arguments{
 \item{lowercase}{Converts column names to lower case}
@@ -32,11 +42,13 @@ Only works in Windows. Puts everything in a data.frame, uses
 	str(clipped_example)
 	}
 
-}
-\author{
-Gene Leynes
+New version based on:
+https://stackoverflow.com/questions/10959521/how-to-write-to-clipboard-on-ubuntu-linux-in-r
+
 }
 \seealso{
 \code{\link{clipboard}},
 }
-
+\author{
+Gene Leynes
+}
