@@ -1,4 +1,5 @@
-#' Chicago's 77 Community Areas
+#' @title Chicago's 77 Community Areas
+#' @name chi_community_areas
 #'
 #' Chicago census tracts for 2000
 #'
@@ -9,6 +10,9 @@
 #'   ...
 #' }
 #' @source \url{https://data.cityofchicago.org/Facilities-Geographic-Boundaries/Boundaries-Community-Areas-current-/cauq-8yn6}
+#' 
+#' @export
+#' 
 "chi_community_areas"
 
 
