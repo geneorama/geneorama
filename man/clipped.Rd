@@ -42,8 +42,8 @@ Only works in Windows. Puts everything in a data.frame, uses
 	str(clipped_example)
 	}
 
-New version based on:
-https://stackoverflow.com/questions/10959521/how-to-write-to-clipboard-on-ubuntu-linux-in-r
+## New version based on:
+## https://stackoverflow.com/questions/10959521/how-to-write-to-clipboard-on-ubuntu-linux-in-r
 
 }
 \seealso{

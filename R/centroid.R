@@ -1,3 +1,5 @@
+#' @name   centroid
+#' @title Iterative algorithm to determine the center of a polygon
 #' find the center of mass / furthest away from any boundary
 #' 
 #' Takes as input a spatial polygon

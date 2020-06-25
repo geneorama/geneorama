@@ -1,6 +1,6 @@
 json_to_datatable <- function(lst){
     # browser()
-    require(jsonlite)
+    # require(jsonlite)
     ret <- list()
     for(i in 1:length(lst)){
         if(i %% 1000 == 1) print(i)

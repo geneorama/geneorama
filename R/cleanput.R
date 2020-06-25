@@ -26,10 +26,10 @@
 #' require(geneorama)
 #'
 #' ## Let's say you need an example, and you choose a modified verion of mtcars
-#' dt <- data.table(carname = rownames(mtcars[1:4,]),
-#' 				 carbrand = as.factor(sapply(strsplit(rownames(mtcars[1:4,]), " "), `[[`, 1)),
-#' 				 mtcars[1:4,])
-#' dt
+#' #dt <- data.table(carname = rownames(mtcars[1:4,]),
+#' #				 carbrand = as.factor(sapply(strsplit(rownames(mtcars[1:4,]), " "), `[[`, 1)),
+#' #				 mtcars[1:4,])
+#' #dt
 #' #           carname carbrand  mpg cyl disp  hp drat    wt  qsec vs am gear carb
 #' # 1:      Mazda RX4    Mazda 21.0   6  160 110 3.90 2.620 16.46  0  1    4    4
 #' # 2:  Mazda RX4 Wag    Mazda 21.0   6  160 110 3.90 2.875 17.02  0  1    4    4
@@ -50,16 +50,8 @@
 #' # -4L), class = c("data.table", "data.frame"), .internal.selfref = <pointer: 0x074324a0>)
 #'
 #' ## That looks nice, buy when you paste it into R Studio, it becomes 547 columns wide!!
-#' structure(list(carname = c("Mazda RX4", "Mazda RX4 Wag", "Datsun 710",
-#' 						   "Hornet 4 Drive"), carbrand = structure(c(3L, 3L, 1L, 2L), .Label = c("Datsun",
-#' 						   																	  "Hornet", "Mazda"), class = "factor"), mpg = c(21, 21, 22.8,
-#' 						   																	  											   21.4), cyl = c(6, 6, 4, 6), disp = c(160, 160, 108, 258), hp = c(110,
-#' 						   																	  											   																 110, 93, 110), drat = c(3.9, 3.9, 3.85, 3.08), wt = c(2.62, 2.875,
-#' 						   																	  											   																 													  2.32, 3.215), qsec = c(16.46, 17.02, 18.61, 19.44), vs = c(0,
-#' 						   																	  											   																 													  														   0, 1, 1), am = c(1, 1, 1, 0), gear = c(4, 4, 4, 3), carb = c(4,
-#' 						   																	  											   																 													  														   															 4, 1, 1)), .Names = c("carname", "carbrand", "mpg", "cyl", "disp",
-#' 						   																	  											   																 													  														   															 					  "hp", "drat", "wt", "qsec", "vs", "am", "gear", "carb"), row.names = c(NA,
-#' 						   																	  											   																 													  														   															 					  																	   -4L), class = c("data.table", "data.frame"), .internal.selfref = <pointer: 0x074324a0>)
+#' ## output not shown
+#' 
 #' ## cleanput attempts to fix the line breaks
 #' cleanput(dt)
 #' # structure(list(carname = c('Mazda RX4', 'Mazda RX4 Wag', 'Datsun 710', 'Hornet 4 Drive'),

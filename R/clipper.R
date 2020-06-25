@@ -26,8 +26,8 @@
 #'		clipper(matrix(rnorm(100),10,10))
 #'		}
 #'
-#' New version based on:
-#' https://stackoverflow.com/questions/10959521/how-to-write-to-clipboard-on-ubuntu-linux-in-r
+#' ## New version based on:
+#' ## https://stackoverflow.com/questions/10959521/how-to-write-to-clipboard-on-ubuntu-linux-in-r
 #' 
 
 

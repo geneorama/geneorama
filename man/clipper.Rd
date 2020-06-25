@@ -37,8 +37,8 @@ Only works in Windows. Only works for simple objects, like 0, 1, and 2
 	clipper(matrix(rnorm(100),10,10))
 	}
 
-New version based on:
-https://stackoverflow.com/questions/10959521/how-to-write-to-clipboard-on-ubuntu-linux-in-r
+## New version based on:
+## https://stackoverflow.com/questions/10959521/how-to-write-to-clipboard-on-ubuntu-linux-in-r
 
 }
 \seealso{
