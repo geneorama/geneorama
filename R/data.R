@@ -71,7 +71,7 @@
 #'   ...
 #' }
 #' @source \url{https://data.cityofchicago.org/Facilities-Geographic-Boundaries/Boundaries-Census-Tracts-2000/pt6c-hxpp}
-"cook_dupage_tracts_2019"
+"chi_census_tracts_2000"
 
 
 #' chi_census_tracts_2010
@@ -109,7 +109,7 @@
 #' @source \url{http://www.diamondse.info/}
 "cook_dupage_tracts_2018"
 
-#' Chicago Census Tracts 2000 Census
+#' cook_dupage_tracts_2018
 #'
 #' Chicago census tracts for 2000
 #'
@@ -120,7 +120,7 @@
 #'   ...
 #' }
 #' @source \url{http://www.diamondse.info/}
-"chi_census_tracts_2000"
+"cook_dupage_tracts_2019"
 
 
 
