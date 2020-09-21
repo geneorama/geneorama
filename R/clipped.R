@@ -46,7 +46,7 @@ clipped = function(header = TRUE,
 	#windows is easy!
 	if (Sys.info()['sysname'] %in% c("Windows")) {
 		#just read as normal
-		ret <- read.table(file = con,
+		ret <- read.table(file = "clipboard",
 						  sep = sep, 
 						  header = header,
 						  check.names = check.names,
