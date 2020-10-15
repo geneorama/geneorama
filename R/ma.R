@@ -45,13 +45,5 @@ if(FALSE){
 	ma(c(1:20, rep(NA,1), 21:30))
 	ma(c(1:20, rep(NA,3), 21:30))
 	
-	
-	Han <- function(y) # Hanning{
-		convolve(y, c(1,2,1)/4, type = "filter")
-	}
-	plot(x, y, main = "Using  convolve(.) for Hanning filters")
-	lines(x[-c(1  , n)      ], Han(y), col = "red")
-	lines(x[-c(1:2, (n-1):n)], Han(Han(y)), lwd = 2, col = "dark blue")
-	
 }
 
